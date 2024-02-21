@@ -7,6 +7,12 @@ variable "model_name" {
   default     = ""
 }
 
+variable "cloud_name" {
+  description = "Name of the Juju cloud to create Juju model on."
+  type        = string
+  default     = "microk8s"
+}
+
 variable "create_model" {
   description = "Allows to skip Juju model creation and re-use a model created in a higher level module."
   type        = bool

@@ -4,6 +4,10 @@
 resource "juju_model" "sdcore" {
   count = var.create_model == true ? 1 : 0
   name  = var.model_name
+
+  cloud {
+    name = var.cloud_name
+  }
 }
 
 module "amf" {
