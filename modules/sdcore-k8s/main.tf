@@ -671,6 +671,34 @@ resource "juju_integration" "upf-logging" {
   }
 }
 
+resource "juju_integration" "webui-logging" {
+  model = var.create_model == true ? juju_model.sdcore[0].name : var.model_name
+
+  application {
+    name     = module.webui.app_name
+    endpoint = module.webui.logging_endpoint
+  }
+
+  application {
+    name     = module.grafana-agent.app_name
+    endpoint = module.grafana-agent.logging_provider_endpoint
+  }
+}
+
+resource "juju_integration" "nms-logging" {
+  model = var.create_model == true ? juju_model.sdcore[0].name : var.model_name
+
+  application {
+    name     = module.nms.app_name
+    endpoint = module.nms.logging_endpoint
+  }
+
+  application {
+    name     = module.grafana-agent.app_name
+    endpoint = module.grafana-agent.logging_provider_endpoint
+  }
+}
+
 # Integrations for `fiveg-n4` endpoint
 
 resource "juju_integration" "upf-nms" {
