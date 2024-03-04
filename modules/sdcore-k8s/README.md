@@ -109,7 +109,7 @@ This will show an output similar to the following:
 
 ```console
 Model       Controller          Cloud/Region        Version  SLA          Timestamp
-<model_name>  microk8s-localhost  microk8s/localhost  3.1.7    unsupported  16:57:40+03:00
+<model_name>  microk8s-localhost  microk8s/localhost  3.4.0    unsupported  16:57:40+03:00
 
 App                       Version  Status   Scale  Charm                     Channel        Rev  Address         Exposed  Message
 amf                                active       1  sdcore-amf-k8s            1.3/edge        29  10.152.183.243  no       
