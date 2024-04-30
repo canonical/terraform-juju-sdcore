@@ -9,7 +9,6 @@ on:
     branches:
       - v1.4
 
-
 jobs:
   check-terraform-module:
     name: Check Terraform Module
