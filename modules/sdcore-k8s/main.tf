@@ -99,7 +99,7 @@ module "traefik" {
 module "upf" {
   source     = "git::https://github.com/canonical/sdcore-upf-k8s-operator//terraform"
   model_name = var.create_model == true ? juju_model.sdcore[0].name : var.model_name
-  channel    = var.sdcore_channel
+  channel    = "1.5/edge/TELCO-1218-separating-bess-from-route-control"
   config     = var.upf_config
 }
 
