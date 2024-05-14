@@ -99,7 +99,7 @@ module "traefik" {
 module "upf" {
   source     = "git::https://github.com/Gmerold/sdcore-upf-k8s-operator//terraform?ref=custom-upf-charm"
   model_name = var.create_model == true ? juju_model.sdcore[0].name : var.model_name
-  channel    = "edge"
+  channel    = "latest/edge"
   config     = var.upf_config
 }
 
