@@ -369,6 +369,20 @@ resource "juju_integration" "nssf-sdcore-config" {
   }
 }
 
+resource "juju_integration" "pcf-sdcore-config" {
+  model = var.create_model == true ? juju_model.sdcore[0].name : var.model_name
+
+  application {
+    name     = module.pcf.app_name
+    endpoint = module.pcf.sdcore_config_endpoint
+  }
+
+  application {
+    name     = module.webui.app_name
+    endpoint = module.webui.sdcore_config_endpoint
+  }
+}
+
 resource "juju_integration" "smf-sdcore-config" {
   model = var.create_model == true ? juju_model.sdcore[0].name : var.model_name
 
@@ -403,20 +417,6 @@ resource "juju_integration" "udr-sdcore-config" {
   application {
     name     = module.udr.app_name
     endpoint = module.udr.sdcore_config_endpoint
-  }
-
-  application {
-    name     = module.webui.app_name
-    endpoint = module.webui.sdcore_config_endpoint
-  }
-}
-
-resource "juju_integration" "pcf-sdcore-config" {
-  model = var.create_model == true ? juju_model.sdcore[0].name : var.model_name
-
-  application {
-    name     = module.pcf.app_name
-    endpoint = module.pcf.sdcore_config_endpoint
   }
 
   application {
