@@ -255,20 +255,6 @@ resource "juju_integration" "smf-database" {
   }
 }
 
-resource "juju_integration" "pcf-database" {
-  model = var.create_model == true ? juju_model.sdcore[0].name : var.model_name
-
-  application {
-    name     = module.pcf.app_name
-    endpoint = module.pcf.database_endpoint
-  }
-
-  application {
-    name     = module.mongodb.app_name
-    endpoint = module.mongodb.database_endpoint
-  }
-}
-
 resource "juju_integration" "nrf-database" {
   model = var.create_model == true ? juju_model.sdcore[0].name : var.model_name
 
@@ -308,6 +294,120 @@ resource "juju_integration" "webui-common-database" {
   application {
     name     = module.mongodb.app_name
     endpoint = module.mongodb.database_endpoint
+  }
+}
+
+# Integrations for `sdcore-config` endpoint
+
+resource "juju_integration" "amf-sdcore-config" {
+  model = var.create_model == true ? juju_model.sdcore[0].name : var.model_name
+
+  application {
+    name     = module.amf.app_name
+    endpoint = module.amf.sdcore_config_endpoint
+  }
+
+  application {
+    name     = module.webui.app_name
+    endpoint = module.webui.sdcore_config_endpoint
+  }
+}
+
+resource "juju_integration" "ausf-sdcore-config" {
+  model = var.create_model == true ? juju_model.sdcore[0].name : var.model_name
+
+  application {
+    name     = module.ausf.app_name
+    endpoint = module.ausf.sdcore_config_endpoint
+  }
+
+  application {
+    name     = module.webui.app_name
+    endpoint = module.webui.sdcore_config_endpoint
+  }
+}
+
+resource "juju_integration" "nrf-sdcore-config" {
+  model = var.create_model == true ? juju_model.sdcore[0].name : var.model_name
+
+  application {
+    name     = module.nrf.app_name
+    endpoint = module.nrf.sdcore_config_endpoint
+  }
+
+  application {
+    name     = module.webui.app_name
+    endpoint = module.webui.sdcore_config_endpoint
+  }
+}
+
+resource "juju_integration" "nssf-sdcore-config" {
+  model = var.create_model == true ? juju_model.sdcore[0].name : var.model_name
+
+  application {
+    name     = module.nssf.app_name
+    endpoint = module.nssf.sdcore_config_endpoint
+  }
+
+  application {
+    name     = module.webui.app_name
+    endpoint = module.webui.sdcore_config_endpoint
+  }
+}
+
+resource "juju_integration" "pcf-sdcore-config" {
+  model = var.create_model == true ? juju_model.sdcore[0].name : var.model_name
+
+  application {
+    name     = module.pcf.app_name
+    endpoint = module.pcf.sdcore_config_endpoint
+  }
+
+  application {
+    name     = module.webui.app_name
+    endpoint = module.webui.sdcore_config_endpoint
+  }
+}
+
+resource "juju_integration" "smf-sdcore-config" {
+  model = var.create_model == true ? juju_model.sdcore[0].name : var.model_name
+
+  application {
+    name     = module.smf.app_name
+    endpoint = module.smf.sdcore_config_endpoint
+  }
+
+  application {
+    name     = module.webui.app_name
+    endpoint = module.webui.sdcore_config_endpoint
+  }
+}
+
+resource "juju_integration" "udm-sdcore-config" {
+  model = var.create_model == true ? juju_model.sdcore[0].name : var.model_name
+
+  application {
+    name     = module.udm.app_name
+    endpoint = module.udm.sdcore_config_endpoint
+  }
+
+  application {
+    name     = module.webui.app_name
+    endpoint = module.webui.sdcore_config_endpoint
+  }
+}
+
+resource "juju_integration" "udr-sdcore-config" {
+  model = var.create_model == true ? juju_model.sdcore[0].name : var.model_name
+
+  application {
+    name     = module.udr.app_name
+    endpoint = module.udr.sdcore_config_endpoint
+  }
+
+  application {
+    name     = module.webui.app_name
+    endpoint = module.webui.sdcore_config_endpoint
   }
 }
 
