@@ -162,6 +162,7 @@ nrf:fiveg_nrf                          pcf:fiveg_nrf                   fiveg_nrf
 nrf:fiveg_nrf                          smf:fiveg_nrf                   fiveg_nrf              regular  
 nrf:fiveg_nrf                          udm:fiveg_nrf                   fiveg_nrf              regular  
 nrf:fiveg_nrf                          udr:fiveg_nrf                   fiveg_nrf              regular  
+nrf:metrics-endpoint                   grafana-agent:metrics-endpoint  prometheus_scrape      regular  
 self-signed-certificates:certificates  amf:certificates                tls-certificates       regular  
 self-signed-certificates:certificates  ausf:certificates               tls-certificates       regular  
 self-signed-certificates:certificates  nrf:certificates                tls-certificates       regular  
