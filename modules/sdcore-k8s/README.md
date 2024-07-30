@@ -125,8 +125,7 @@ smf                                active       1  sdcore-smf-k8s            1.5
 traefik                   2.10.4   active       1  traefik-k8s               latest/stable  166  10.0.0.14       no       
 udm                                active       1  sdcore-udm-k8s            1.5/edge        23  10.152.183.165  no       
 udr                                active       1  sdcore-udr-k8s            1.5/edge        23  10.152.183.166  no       
-upf                                active       1  sdcore-upf-k8s            1.5/edge        31  10.152.183.91   no       
-webui                              active       1  sdcore-webui-k8s          1.5/edge        15  10.152.183.208  no       
+upf                                active       1  sdcore-upf-k8s            1.5/edge        31  10.152.183.91   no         
 
 Unit                         Workload  Agent  Address       Ports  Message
 amf/0*                       active    idle   10.1.146.108         
@@ -142,8 +141,7 @@ smf/0*                       active    idle   10.1.146.111
 traefik/0*                   active    idle   10.1.146.74          
 udm/0*                       active    idle   10.1.146.81          
 udr/0*                       active    idle   10.1.146.105         
-upf/0*                       active    idle   10.1.146.103         
-webui/0*                     active    idle   10.1.146.65          
+upf/0*                       active    idle   10.1.146.103             
 
 Integration provider                   Requirer                        Interface              Type     Message
 amf:metrics-endpoint                   grafana-agent:metrics-endpoint  prometheus_scrape      regular  
@@ -154,7 +152,7 @@ mongodb:database                       amf:database                    mongodb_c
 mongodb:database                       nrf:database                    mongodb_client         regular  
 mongodb:database                       smf:database                    mongodb_client         regular  
 mongodb:database                       udr:database                    mongodb_client         regular  
-mongodb:database                       webui:database                  mongodb_client         regular  
+mongodb:database                       nms:database                    mongodb_client         regular  
 mongodb:database-peers                 mongodb:database-peers          mongodb-peers          peer     
 mongodb:metrics-endpoint               grafana-agent:metrics-endpoint  prometheus_scrape      regular  
 nrf:fiveg_nrf                          amf:fiveg_nrf                   fiveg_nrf              regular  
@@ -181,7 +179,6 @@ traefik:peers                          traefik:peers                   traefik_p
 udm:metrics-endpoint                   grafana-agent:metrics-endpoint  prometheus_scrape      regular  
 udr:metrics-endpoint                   grafana-agent:metrics-endpoint  prometheus_scrape      regular  
 upf:metrics-endpoint                   grafana-agent:metrics-endpoint  prometheus_scrape      regular  
-webui:sdcore-management                nms:sdcore-management           sdcore_management      regular
 ```
 
 ### Cleaning up
