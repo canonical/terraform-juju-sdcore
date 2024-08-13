@@ -149,10 +149,11 @@ ausf:metrics-endpoint                   grafana-agent:metrics-endpoint prometheu
 grafana-agent:logging-provider         mongodb:logging                 loki_push_api          regular  
 grafana-agent:peers                    grafana-agent:peers             grafana_agent_replica  peer     
 mongodb:database                       amf:database                    mongodb_client         regular  
+mongodb:database                       nms:auth_database               mongodb_client         regular  
+mongodb:database                       nms:common_database             mongodb_client         regular 
 mongodb:database                       nrf:database                    mongodb_client         regular  
 mongodb:database                       smf:database                    mongodb_client         regular  
 mongodb:database                       udr:database                    mongodb_client         regular  
-mongodb:database                       nms:database                    mongodb_client         regular  
 mongodb:database-peers                 mongodb:database-peers          mongodb-peers          peer     
 mongodb:metrics-endpoint               grafana-agent:metrics-endpoint  prometheus_scrape      regular  
 nrf:fiveg_nrf                          amf:fiveg_nrf                   fiveg_nrf              regular  
