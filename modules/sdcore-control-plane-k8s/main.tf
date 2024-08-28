@@ -62,12 +62,6 @@ module "udr" {
   channel    = var.sdcore_channel
 }
 
-module "webui" {
-  source     = "git::https://github.com/canonical/sdcore-webui-k8s-operator//terraform"
-  model_name = var.create_model == true ? juju_model.sdcore[0].name : var.model_name
-  channel    = var.sdcore_channel
-}
-
 module "mongodb" {
   source     = "../external/mongodb-k8s"
   model_name = var.create_model == true ? juju_model.sdcore[0].name : var.model_name
@@ -262,12 +256,12 @@ resource "juju_integration" "nrf-database" {
   }
 }
 
-resource "juju_integration" "webui-auth-database" {
+resource "juju_integration" "nms-auth-database" {
   model = var.create_model == true ? juju_model.sdcore[0].name : var.model_name
 
   application {
-    name     = module.webui.app_name
-    endpoint = module.webui.auth_database_endpoint
+    name     = module.nms.app_name
+    endpoint = module.nms.auth_database_endpoint
   }
 
   application {
@@ -276,12 +270,12 @@ resource "juju_integration" "webui-auth-database" {
   }
 }
 
-resource "juju_integration" "webui-common-database" {
+resource "juju_integration" "nms-common-database" {
   model = var.create_model == true ? juju_model.sdcore[0].name : var.model_name
 
   application {
-    name     = module.webui.app_name
-    endpoint = module.webui.common_database_endpoint
+    name     = module.nms.app_name
+    endpoint = module.nms.common_database_endpoint
   }
 
   application {
@@ -290,7 +284,7 @@ resource "juju_integration" "webui-common-database" {
   }
 }
 
-# Integrations for `sdcore-config` endpoint
+# Integrations for `sdcore_config` endpoint
 
 resource "juju_integration" "amf-sdcore-config" {
   model = var.create_model == true ? juju_model.sdcore[0].name : var.model_name
@@ -301,8 +295,8 @@ resource "juju_integration" "amf-sdcore-config" {
   }
 
   application {
-    name     = module.webui.app_name
-    endpoint = module.webui.sdcore_config_endpoint
+    name     = module.nms.app_name
+    endpoint = module.nms.sdcore_config_endpoint
   }
 }
 
@@ -315,8 +309,8 @@ resource "juju_integration" "ausf-sdcore-config" {
   }
 
   application {
-    name     = module.webui.app_name
-    endpoint = module.webui.sdcore_config_endpoint
+    name     = module.nms.app_name
+    endpoint = module.nms.sdcore_config_endpoint
   }
 }
 
@@ -329,8 +323,8 @@ resource "juju_integration" "nrf-sdcore-config" {
   }
 
   application {
-    name     = module.webui.app_name
-    endpoint = module.webui.sdcore_config_endpoint
+    name     = module.nms.app_name
+    endpoint = module.nms.sdcore_config_endpoint
   }
 }
 
@@ -343,8 +337,8 @@ resource "juju_integration" "nssf-sdcore-config" {
   }
 
   application {
-    name     = module.webui.app_name
-    endpoint = module.webui.sdcore_config_endpoint
+    name     = module.nms.app_name
+    endpoint = module.nms.sdcore_config_endpoint
   }
 }
 
@@ -357,8 +351,8 @@ resource "juju_integration" "pcf-sdcore-config" {
   }
 
   application {
-    name     = module.webui.app_name
-    endpoint = module.webui.sdcore_config_endpoint
+    name     = module.nms.app_name
+    endpoint = module.nms.sdcore_config_endpoint
   }
 }
 
@@ -371,8 +365,8 @@ resource "juju_integration" "smf-sdcore-config" {
   }
 
   application {
-    name     = module.webui.app_name
-    endpoint = module.webui.sdcore_config_endpoint
+    name     = module.nms.app_name
+    endpoint = module.nms.sdcore_config_endpoint
   }
 }
 
@@ -385,8 +379,8 @@ resource "juju_integration" "udm-sdcore-config" {
   }
 
   application {
-    name     = module.webui.app_name
-    endpoint = module.webui.sdcore_config_endpoint
+    name     = module.nms.app_name
+    endpoint = module.nms.sdcore_config_endpoint
   }
 }
 
@@ -399,8 +393,8 @@ resource "juju_integration" "udr-sdcore-config" {
   }
 
   application {
-    name     = module.webui.app_name
-    endpoint = module.webui.sdcore_config_endpoint
+    name     = module.nms.app_name
+    endpoint = module.nms.sdcore_config_endpoint
   }
 }
 
@@ -412,6 +406,76 @@ resource "juju_integration" "amf-metrics" {
   application {
     name     = module.amf.app_name
     endpoint = module.amf.metrics_endpoint
+  }
+
+  application {
+    name     = module.grafana-agent.app_name
+    endpoint = module.grafana-agent.metrics_endpoint
+  }
+}
+
+resource "juju_integration" "ausf-metrics" {
+  model = var.create_model == true ? juju_model.sdcore[0].name : var.model_name
+
+  application {
+    name     = module.ausf.app_name
+    endpoint = module.ausf.metrics_endpoint
+  }
+
+  application {
+    name     = module.grafana-agent.app_name
+    endpoint = module.grafana-agent.metrics_endpoint
+  }
+}
+
+resource "juju_integration" "mongodb-metrics" {
+  model = var.create_model == true ? juju_model.sdcore[0].name : var.model_name
+
+  application {
+    name     = module.mongodb.app_name
+    endpoint = module.mongodb.metrics_endpoint
+  }
+
+  application {
+    name     = module.grafana-agent.app_name
+    endpoint = module.grafana-agent.metrics_endpoint
+  }
+}
+
+resource "juju_integration" "nrf-metrics" {
+  model = var.create_model == true ? juju_model.sdcore[0].name : var.model_name
+
+  application {
+    name     = module.nrf.app_name
+    endpoint = module.nrf.metrics_endpoint
+  }
+
+  application {
+    name     = module.grafana-agent.app_name
+    endpoint = module.grafana-agent.metrics_endpoint
+  }
+}
+
+resource "juju_integration" "nssf-metrics" {
+  model = var.create_model == true ? juju_model.sdcore[0].name : var.model_name
+
+  application {
+    name     = module.nssf.app_name
+    endpoint = module.nssf.metrics_endpoint
+  }
+
+  application {
+    name     = module.grafana-agent.app_name
+    endpoint = module.grafana-agent.metrics_endpoint
+  }
+}
+
+resource "juju_integration" "pcf-metrics" {
+  model = var.create_model == true ? juju_model.sdcore[0].name : var.model_name
+
+  application {
+    name     = module.pcf.app_name
+    endpoint = module.pcf.metrics_endpoint
   }
 
   application {
@@ -434,12 +498,26 @@ resource "juju_integration" "smf-metrics" {
   }
 }
 
-resource "juju_integration" "mongodb-metrics" {
+resource "juju_integration" "udm-metrics" {
   model = var.create_model == true ? juju_model.sdcore[0].name : var.model_name
 
   application {
-    name     = module.mongodb.app_name
-    endpoint = module.mongodb.metrics_endpoint
+    name     = module.udm.app_name
+    endpoint = module.udm.metrics_endpoint
+  }
+
+  application {
+    name     = module.grafana-agent.app_name
+    endpoint = module.grafana-agent.metrics_endpoint
+  }
+}
+
+resource "juju_integration" "udr-metrics" {
+  model = var.create_model == true ? juju_model.sdcore[0].name : var.model_name
+
+  application {
+    name     = module.udr.app_name
+    endpoint = module.udr.metrics_endpoint
   }
 
   application {
@@ -578,22 +656,6 @@ resource "juju_integration" "nms-ingress" {
   }
 }
 
-# Integrations for `sdcore-management` endpoint
-
-resource "juju_integration" "nms-sdcore-management" {
-  model = var.create_model == true ? juju_model.sdcore[0].name : var.model_name
-
-  application {
-    name     = module.nms.app_name
-    endpoint = module.nms.sdcore_management_endpoint
-  }
-
-  application {
-    name     = module.webui.app_name
-    endpoint = module.webui.sdcore_management_endpoint
-  }
-}
-
 # Integrations for `logging` endpoint
 
 resource "juju_integration" "mongodb-logging" {
@@ -728,20 +790,6 @@ resource "juju_integration" "nms-logging" {
   application {
     name     = module.nms.app_name
     endpoint = module.nms.logging_endpoint
-  }
-
-  application {
-    name     = module.grafana-agent.app_name
-    endpoint = module.grafana-agent.logging_provider_endpoint
-  }
-}
-
-resource "juju_integration" "webui-logging" {
-  model = var.create_model == true ? juju_model.sdcore[0].name : var.model_name
-
-  application {
-    name     = module.webui.app_name
-    endpoint = module.webui.logging_endpoint
   }
 
   application {

@@ -87,7 +87,7 @@ terraform apply -var-file="terraform.tfvars" -auto-approve
 
 #### Including Canonical Observability Stack (COS)
 
-The `sdcore-k8s` Terraform module offers an option to automatically deploy COS. To use it,
+The `sdcore-control-plane-k8s` Terraform module offers an option to automatically deploy COS. To use it,
 add following variable to your `terraform.tfvars`:
 
 ```text
@@ -123,8 +123,7 @@ self-signed-certificates           active       1  self-signed-certificates  lat
 smf                                active       1  sdcore-smf-k8s            1.5/edge        25  10.152.183.29   no       
 traefik                   2.10.4   active       1  traefik-k8s               latest/stable  166  10.0.0.10       no       
 udm                                active       1  sdcore-udm-k8s            1.5/edge        23  10.152.183.251  no       
-udr                                active       1  sdcore-udr-k8s            1.5/edge        23  10.152.183.26   no       
-webui                              active       1  sdcore-webui-k8s          1.5/edge        15  10.152.183.33   no       
+udr                                active       1  sdcore-udr-k8s            1.5/edge        23  10.152.183.26   no          
 
 Unit                         Workload  Agent  Address       Ports  Message
 amf/0*                       active    idle   10.1.146.71          
@@ -139,17 +138,18 @@ self-signed-certificates/0*  active    idle   10.1.146.106
 smf/0*                       active    idle   10.1.146.76          
 traefik/0*                   active    idle   10.1.146.109         
 udm/0*                       active    idle   10.1.146.79          
-udr/0*                       active    idle   10.1.146.124         
-webui/0*                     active    idle   10.1.146.69          
+udr/0*                       active    idle   10.1.146.124           
 
 Integration provider                   Requirer                        Interface              Type     Message
 amf:metrics-endpoint                   grafana-agent:metrics-endpoint  prometheus_scrape      regular  
+ausf:metrics-endpoint                  grafana-agent:metrics-endpoint  prometheus_scrape      regular  
 grafana-agent:logging-provider         mongodb:logging                 loki_push_api          regular  
 grafana-agent:peers                    grafana-agent:peers             grafana_agent_replica  peer     
+mongodb:database                       nms:auth_database               mongodb_client         regular  
+mongodb:database                       nms:common_database             mongodb_client         regular 
 mongodb:database                       nrf:database                    mongodb_client         regular  
 mongodb:database                       smf:database                    mongodb_client         regular  
-mongodb:database                       udr:database                    mongodb_client         regular  
-mongodb:database                       webui:database                  mongodb_client         regular  
+mongodb:database                       udr:database                    mongodb_client         regular    
 mongodb:database-peers                 mongodb:database-peers          mongodb-peers          peer     
 mongodb:metrics-endpoint               grafana-agent:metrics-endpoint  prometheus_scrape      regular  
 nrf:fiveg_nrf                          amf:fiveg_nrf                   fiveg_nrf              regular  
@@ -159,6 +159,9 @@ nrf:fiveg_nrf                          pcf:fiveg_nrf                   fiveg_nrf
 nrf:fiveg_nrf                          smf:fiveg_nrf                   fiveg_nrf              regular  
 nrf:fiveg_nrf                          udm:fiveg_nrf                   fiveg_nrf              regular  
 nrf:fiveg_nrf                          udr:fiveg_nrf                   fiveg_nrf              regular  
+nrf:metrics-endpoint                   grafana-agent:metrics-endpoint  prometheus_scrape      regular  
+nssf:metrics-endpoint                  grafana-agent:metrics-endpoint  prometheus_scrape      regular  
+pcf:metrics-endpoint                   grafana-agent:metrics-endpoint  prometheus_scrape      regular  
 self-signed-certificates:certificates  amf:certificates                tls-certificates       regular  
 self-signed-certificates:certificates  ausf:certificates               tls-certificates       regular  
 self-signed-certificates:certificates  nrf:certificates                tls-certificates       regular  
@@ -170,7 +173,8 @@ self-signed-certificates:certificates  udr:certificates                tls-certi
 smf:metrics-endpoint                   grafana-agent:metrics-endpoint  prometheus_scrape      regular  
 traefik:ingress                        nms:ingress                     ingress                regular  
 traefik:peers                          traefik:peers                   traefik_peers          peer     
-webui:sdcore-management                nms:sdcore-management           sdcore_management      regular  
+udm:metrics-endpoint                   grafana-agent:metrics-endpoint  prometheus_scrape      regular  
+udr:metrics-endpoint                   grafana-agent:metrics-endpoint  prometheus_scrape      regular  
 ```
 
 ### Cleaning up

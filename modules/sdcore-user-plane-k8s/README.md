@@ -88,7 +88,7 @@ terraform apply -var-file="terraform.tfvars" -auto-approve
 
 #### Including Canonical Observability Stack (COS)
 
-The `sdcore-k8s` Terraform module offers an option to automatically deploy COS. To use it,
+The `sdcore-user-plane-k8s` Terraform module offers an option to automatically deploy COS. To use it,
 add following variable to your `terraform.tfvars`:
 
 ```text
@@ -120,6 +120,7 @@ grafana-agent/0*  blocked   idle   10.1.146.98         send-remote-write: off, g
 upf/0*            active    idle   10.1.146.87         
 
 Integration provider  Requirer                        Interface              Type     Message
+upf:metrics-endpoint  grafana-agent:metrics-endpoint  prometheus_scrape      regular  
 grafana-agent:peers   grafana-agent:peers             grafana_agent_replica  peer   
 ```
 
