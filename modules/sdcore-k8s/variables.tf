@@ -98,11 +98,39 @@ variable "deploy_cos" {
   type        = bool
   default     = false
 }
+variable "use_existing_cos" {
+  description = "Allows integrating with an existing COS deployment. When set to `true`, `cos_model_name`, `prometheus_remote_write_offer_url` and `loki_logging_offer_url` are required."
+  type        = bool
+  default     = false
+}
+
 variable "cos_model_name" {
-  description = "Name of Juju model to deploy COS to."
+  description = "Name of COS Juju model. This model will be created if `deploy_cos` is set to true or used as a source when integrating with existing COS deployment."
   type        = string
   default     = "cos-lite"
 }
+
+variable "prometheus_remote_write_offer_url" {
+  description = "URL of Prometheus's `remote_write` offer. This variable is used to integrate with an existing COS deployment."
+  type        = string
+  default     = ""
+
+  validation {
+    condition     = var.use_existing_cos && length(var.prometheus_remote_write_offer_url) != 0
+    error_message = "Variable `prometheus_remote_write_offer_url` is required."
+  }
+}
+variable "loki_logging_offer_url" {
+  description = "URL of Loki's `logging` offer. This variable is used to integrate with an existing COS deployment."
+  type        = string
+  default     = ""
+
+  validation {
+    condition     = var.use_existing_cos && length(var.loki_logging_offer_url) != 0
+    error_message = "Variable `loki_logging_offer_url` is required."
+  }
+}
+
 variable "cos_configuration_config" {
   description = "COS Configuration application config. Details about available options can be found at https://charmhub.io/cos-configuration-k8s/configure."
   type        = map(string)

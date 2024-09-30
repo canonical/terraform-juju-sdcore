@@ -1,14 +1,11 @@
 # Copyright 2024 Canonical Ltd.
 # See LICENSE file for licensing details.
 
-output "amf_app_name" {
-  description = "Name of the deployed AMF application."
-  value       = module.amf.app_name
-}
+# Cross-model integrations
 
-output "fiveg_n2_endpoint" {
-  description = "Name of the endpoint used to provide information on connectivity to the N2 plane."
-  value       = module.amf.fiveg_n2_endpoint
+output "amf_fiveg_n2_offer_url" {
+  description = ""
+  value       = juju_offer.amf-fiveg-n2.url
 }
 
 output "nms_app_name" {

@@ -786,21 +786,14 @@ resource "juju_integration" "nms-logging" {
 
 # Cross-model integrations
 
-resource "juju_offer" "prometheus-remote-write" {
-  count            = var.deploy_cos ? 1 : 0
-  model            = module.cos-lite[0].model_name
-  application_name = module.cos-lite[0].prometheus_app_name
-  endpoint         = "receive-remote-write"
-}
-resource "juju_offer" "loki-logging" {
-  count            = var.deploy_cos ? 1 : 0
-  model            = module.cos-lite[0].model_name
-  application_name = module.cos-lite[0].loki_app_name
-  endpoint         = "logging"
+resource "juju_offer" "amf-fiveg-n2" {
+  model            = var.model_name
+  application_name = module.amf.app_name
+  endpoint         = module.amf.fiveg_n2_endpoint
 }
 
 resource "juju_integration" "prometheus" {
-  count = var.deploy_cos ? 1 : 0
+  count = var.deploy_cos || var.use_existing_cos ? 1 : 0
   model = var.model_name
 
   application {
@@ -809,12 +802,12 @@ resource "juju_integration" "prometheus" {
   }
 
   application {
-    offer_url = juju_offer.prometheus-remote-write[0].url
+    offer_url = length(module.cos-lite) != 0 ? module.cos-lite[0].prometheus_remote_write_offer_url : var.prometheus_remote_write_offer_url
   }
 }
 
 resource "juju_integration" "loki" {
-  count = var.deploy_cos ? 1 : 0
+  count = var.deploy_cos || var.use_existing_cos ? 1 : 0
   model = var.model_name
 
   application {
@@ -823,6 +816,6 @@ resource "juju_integration" "loki" {
   }
 
   application {
-    offer_url = juju_offer.loki-logging[0].url
+    offer_url = length(module.cos-lite) != 0 ? module.cos-lite[0].loki_logging_offer_url : var.loki_logging_offer_url
   }
 }
