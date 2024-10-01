@@ -62,8 +62,20 @@ resource "juju_integration" "upf-logging" {
 
 # Cross-model integrations
 
+resource "juju_offer" "upf-fiveg-n3" {
+  model            = var.model_name
+  application_name = module.upf.app_name
+  endpoint         = module.upf.fiveg_n3_endpoint
+}
+
+resource "juju_offer" "upf-fiveg-n4" {
+  model            = var.model_name
+  application_name = module.upf.app_name
+  endpoint         = module.upf.fiveg_n4_endpoint
+}
+
 resource "juju_integration" "prometheus" {
-  count = var.deploy_cos ? 1 : 0
+  count = var.deploy_cos || var.use_existing_cos ? 1 : 0
   model = var.model_name
 
   application {
@@ -72,12 +84,12 @@ resource "juju_integration" "prometheus" {
   }
 
   application {
-    offer_url = module.cos-lite[0].prometheus_remote_write_offer_url
+    offer_url = length(module.cos-lite) != 0 ? module.cos-lite[0].prometheus_remote_write_offer_url : var.prometheus_remote_write_offer_url
   }
 }
 
 resource "juju_integration" "loki" {
-  count = var.deploy_cos ? 1 : 0
+  count = var.deploy_cos || var.use_existing_cos ? 1 : 0
   model = var.model_name
 
   application {
@@ -86,6 +98,6 @@ resource "juju_integration" "loki" {
   }
 
   application {
-    offer_url = module.cos-lite[0].loki_logging_offer_url
+    offer_url = length(module.cos-lite) != 0 ? module.cos-lite[0].loki_logging_offer_url : var.loki_logging_offer_url
   }
 }

@@ -843,6 +843,12 @@ resource "juju_offer" "amf-fiveg-n2" {
   endpoint         = module.amf.fiveg_n2_endpoint
 }
 
+resource "juju_offer" "upf-fiveg-n3" {
+  model            = var.model_name
+  application_name = module.amf.app_name
+  endpoint         = module.amf.fiveg_n3_endpoint
+}
+
 resource "juju_integration" "prometheus" {
   count = var.deploy_cos || var.use_existing_cos ? 1 : 0
   model = var.model_name
