@@ -11,7 +11,7 @@ The module can be used to deploy the `sdcore-control-plane-k8s` separately as we
 - **main.tf** - Defines the Juju application to be deployed.
 - **variables.tf** - Allows customization of the deployment including Juju model name, charm's channel and configuration.
 - **output.tf** - Responsible for integrating the module with other Terraform modules, primarily by defining potential integration endpoints (charm integrations).
-- **terraform.tf** - Defines the Terraform provider.
+- **versions.tf** - Defines the Terraform provider.
 
 ## Deploying sdcore-control-plane-k8s module separately
 
@@ -73,7 +73,11 @@ Create the `terraform.tfvars` file to specify the name of the Juju model to depl
 
 ```console
 cat << EOF | tee terraform.tfvars
-model_name = "put your model-name here"
+data "juju_model" "sdcore_k8s" {
+  name = "put your model-name here"
+}
+
+model = data.juju_model.sdcore_k8s.name
 
 # Customize the configuration variables here if needed
 EOF
@@ -181,7 +185,7 @@ If you want to use `sdcore-control-plane-k8s` module as part of your Terraform m
 module "sdcore-control-plane" {
   source = "git::https://github.com/canonical/https://github.com/canonical/terraform-juju-sdcore-k8s//modules/sdcore-control-plane-k8s"
   
-  model_name = "juju_model_name"
+  model = data.juju_model.model.name
   (Customize configuration variables here if needed)
 }
 ```
