@@ -10,7 +10,6 @@ module "upf" {
   model       = data.juju_model.sdcore_upf.name
   channel     = var.upf_channel
   config      = var.upf_config
-  constraints = "arch=amd64"
 }
 
 module "grafana-agent" {

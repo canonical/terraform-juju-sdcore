@@ -10,28 +10,24 @@ module "amf" {
   model       = data.juju_model.sdcore.name
   channel     = var.sdcore_channel
   config      = var.amf_config
-  constraints = "arch=amd64"
 }
 
 module "ausf" {
   source      = "git::https://github.com/canonical/sdcore-ausf-k8s-operator//terraform?ref=chore-cc006"
   model       = data.juju_model.sdcore.name
   channel     = var.sdcore_channel
-  constraints = "arch=amd64"
 }
 
 module "nms" {
   source      = "git::https://github.com/canonical/sdcore-nms-k8s-operator//terraform?ref=chore-cc006"
   model       = data.juju_model.sdcore.name
   channel     = var.sdcore_channel
-  constraints = "arch=amd64"
 }
 
 module "nrf" {
   source      = "git::https://github.com/canonical/sdcore-nrf-k8s-operator//terraform?ref=chore-cc006"
   model       = data.juju_model.sdcore.name
   channel     = var.sdcore_channel
-  constraints = "arch=amd64"
 }
 
 module "nssf" {
@@ -39,35 +35,30 @@ module "nssf" {
   model       = data.juju_model.sdcore.name
   channel     = var.sdcore_channel
   config      = var.nssf_config
-  constraints = "arch=amd64"
 }
 
 module "pcf" {
   source      = "git::https://github.com/canonical/sdcore-pcf-k8s-operator//terraform?ref=chore-cc006"
   model       = data.juju_model.sdcore.name
   channel     = var.sdcore_channel
-  constraints = "arch=amd64"
 }
 
 module "smf" {
   source      = "git::https://github.com/canonical/sdcore-smf-k8s-operator//terraform?ref=chore-cc006"
   model       = data.juju_model.sdcore.name
   channel     = var.sdcore_channel
-  constraints = "arch=amd64"
 }
 
 module "udm" {
   source      = "git::https://github.com/canonical/sdcore-udm-k8s-operator//terraform?ref=chore-cc006"
   model       = data.juju_model.sdcore.name
   channel     = var.sdcore_channel
-  constraints = "arch=amd64"
 }
 
 module "udr" {
   source      = "git::https://github.com/canonical/sdcore-udr-k8s-operator//terraform?ref=chore-cc006"
   model       = data.juju_model.sdcore.name
   channel     = var.sdcore_channel
-  constraints = "arch=amd64"
 }
 
 module "mongodb" {
