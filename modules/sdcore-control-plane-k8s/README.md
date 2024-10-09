@@ -69,15 +69,11 @@ Initialize the provider:
 terraform init
 ```
 
-Create the `terraform.tfvars` file to specify the name of the Juju model to deploy to. Reusing already existing model is not recommended.
+Create the `terraform.tfvars` file to specify the name of the Juju model to deploy to. The model should already exist.
 
 ```console
 cat << EOF | tee terraform.tfvars
-data "juju_model" "sdcore_k8s" {
-  name = "put your model-name here"
-}
-
-model = data.juju_model.sdcore_k8s.name
+model = "my_model_name"
 
 # Customize the configuration variables here if needed
 EOF
@@ -182,10 +178,14 @@ terraform destroy -auto-approve
 If you want to use `sdcore-control-plane-k8s` module as part of your Terraform module, import it like shown below:
 
 ```text
+data "juju_model" "sdcore" {
+  name = "my_model_name"
+}
+
 module "sdcore-control-plane" {
   source = "git::https://github.com/canonical/https://github.com/canonical/terraform-juju-sdcore-k8s//modules/sdcore-control-plane-k8s"
   
-  model = data.juju_model.model.name
+  model = data.juju_model.sdcore.name
   (Customize configuration variables here if needed)
 }
 ```
