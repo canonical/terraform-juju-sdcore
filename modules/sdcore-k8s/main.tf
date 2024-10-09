@@ -833,10 +833,12 @@ resource "juju_offer" "amf-fiveg-n2" {
   model            = var.model_name
   application_name = module.amf.app_name
   endpoint         = module.amf.fiveg_n2_endpoint
+  name             = "amf-fiveg-n2"
 }
 
 resource "juju_offer" "upf-fiveg-n3" {
   model            = var.model_name
   application_name = module.upf.app_name
   endpoint         = module.upf.fiveg_n3_endpoint
+  name             = "upf-fiveg-n3"
 }
