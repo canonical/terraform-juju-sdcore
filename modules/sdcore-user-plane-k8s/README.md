@@ -70,15 +70,11 @@ Initialize the provider:
 terraform init
 ```
 
-Create the `terraform.tfvars` file to specify the name of the Juju model to deploy to. Reusing already existing model is not recommended.
+Create the `terraform.tfvars` file to specify the name of the Juju model to deploy to. The model needs to be created outside of this module.
 
 ```console
 cat << EOF | tee terraform.tfvars
-data "juju_model" "sdcore_upf_k8s" {
-  name = "sdcore_upf_k8s"
-}
-
-model = data.juju_model.sdcore_upf_k8s.name
+model = "my_model_name"
 
 # Customize the configuration variables here if needed
 EOF
