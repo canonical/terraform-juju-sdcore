@@ -31,7 +31,7 @@ The following tools need to be installed and should be running in the environmen
 Install MicroK8s and add your user to the `snap_microk8s` group:
 
 ```shell
-sudo snap install microk8s --channel=1.29-strict/stable
+sudo snap install microk8s --channel=1.31-strict/stable
 sudo usermod -a -G snap_microk8s $USER
 newgrp snap_microk8s
 ```
