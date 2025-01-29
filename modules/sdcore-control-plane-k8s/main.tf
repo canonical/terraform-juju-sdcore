@@ -6,7 +6,7 @@ data "juju_model" "sdcore" {
 }
 
 module "amf" {
-  source      = "git::https://github.com/canonical/sdcore-amf-k8s-operator//terraform?ref=${var.amf.module_ref}"
+  source      = "git::https://github.com/canonical/sdcore-amf-k8s-operator//terraform"
   app_name    = var.amf.app_name
   channel     = var.amf.channel
   config      = var.amf.config

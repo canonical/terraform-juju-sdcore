@@ -38,7 +38,6 @@ variable "traefik_channel" {
 
 variable "amf" {
   type = object({
-    module_ref  = string
     app_name    = string
     channel     = string
     config      = map(string)
@@ -49,9 +48,8 @@ variable "amf" {
     units       = number
   })
   default = {
-    module_ref  = "main"
     app_name    = "amf"
-    channel     = var.sdcore_channel
+    channel     = "1.6/edge"
     config      = {}
     constraints = "arch=amd64"
     resources   = {}
