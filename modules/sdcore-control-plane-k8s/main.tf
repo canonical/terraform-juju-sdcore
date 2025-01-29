@@ -12,11 +12,16 @@ module "amf" {
   revision    = var.amf.revision
   base        = var.amf.base
   units       = var.amf.units
+
+  depends_on = [
+    nrf,
+    nms
+  ]
 }
 
 module "ausf" {
   source    = "git::https://github.com/canonical/sdcore-ausf-k8s-operator//terraform"
-  model       = var.model
+  model     = var.model
   channel   = var.sdcore_channel
   revision  = var.ausf_revision
   resources = var.ausf_resources
@@ -24,7 +29,7 @@ module "ausf" {
 
 module "nms" {
   source    = "git::https://github.com/canonical/sdcore-nms-k8s-operator//terraform"
-  model       = var.model
+  model     = var.model
   channel   = var.sdcore_channel
   revision  = var.nms_revision
   resources = var.nms_resources
@@ -32,7 +37,7 @@ module "nms" {
 
 module "nrf" {
   source    = "git::https://github.com/canonical/sdcore-nrf-k8s-operator//terraform"
-  model       = var.model
+  model     = var.model
   channel   = var.sdcore_channel
   revision  = var.nrf_revision
   resources = var.nrf_resources
@@ -40,7 +45,7 @@ module "nrf" {
 
 module "nssf" {
   source    = "git::https://github.com/canonical/sdcore-nssf-k8s-operator//terraform"
-  model       = var.model
+  model     = var.model
   channel   = var.sdcore_channel
   revision  = var.nssf_revision
   resources = var.nssf_resources
@@ -48,7 +53,7 @@ module "nssf" {
 
 module "pcf" {
   source    = "git::https://github.com/canonical/sdcore-pcf-k8s-operator//terraform"
-  model       = var.model
+  model     = var.model
   channel   = var.sdcore_channel
   revision  = var.pcf_revision
   resources = var.pcf_resources
@@ -56,7 +61,7 @@ module "pcf" {
 
 module "smf" {
   source    = "git::https://github.com/canonical/sdcore-smf-k8s-operator//terraform"
-  model       = var.model
+  model     = var.model
   channel   = var.sdcore_channel
   revision  = var.smf_revision
   resources = var.smf_resources
@@ -64,7 +69,7 @@ module "smf" {
 
 module "udm" {
   source    = "git::https://github.com/canonical/sdcore-udm-k8s-operator//terraform"
-  model       = var.model
+  model     = var.model
   channel   = var.sdcore_channel
   revision  = var.udm_revision
   resources = var.udm_resources
@@ -72,7 +77,7 @@ module "udm" {
 
 module "udr" {
   source    = "git::https://github.com/canonical/sdcore-udr-k8s-operator//terraform"
-  model       = var.model
+  model     = var.model
   channel   = var.sdcore_channel
   revision  = var.udr_revision
   resources = var.udr_resources
@@ -80,28 +85,28 @@ module "udr" {
 
 module "mongodb" {
   source     = "../external/mongodb-k8s"
-  model_name       = var.model
+  model_name = var.model
   channel    = var.mongo_channel
   config     = var.mongo_config
 }
 
 module "grafana-agent" {
   source     = "../external/grafana-agent-k8s"
-  model_name       = var.model
+  model_name = var.model
   channel    = var.grafana_agent_channel
   config     = var.grafana_agent_config
 }
 
 module "self-signed-certificates" {
   source     = "git::https://github.com/canonical/self-signed-certificates-operator//terraform"
-  model_name       = var.model
+  model_name = var.model
   channel    = var.self_signed_certificates_channel
   config     = var.self_signed_certificates_config
 }
 
 module "traefik" {
   source     = "../external/traefik-k8s"
-  model_name       = var.model
+  model_name = var.model
   channel    = var.traefik_channel
   config     = var.traefik_config
 }
@@ -109,7 +114,7 @@ module "traefik" {
 # Integrations for `fiveg-nrf` endpoint
 
 resource "juju_integration" "amf-fiveg-nrf" {
-  model       = var.model
+  model = var.model
 
   application {
     name     = module.amf.app_name
@@ -123,7 +128,7 @@ resource "juju_integration" "amf-fiveg-nrf" {
 }
 
 resource "juju_integration" "udm-fiveg-nrf" {
-  model       = var.model
+  model = var.model
 
   application {
     name     = module.udm.app_name
