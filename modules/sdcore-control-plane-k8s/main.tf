@@ -3,84 +3,119 @@
 
 module "amf" {
   source      = "git::https://github.com/canonical/sdcore-amf-k8s-operator//terraform"
+  model       = var.model
   app_name    = var.amf.app_name
   channel     = var.amf.channel
   config      = var.amf.config
   constraints = var.amf.constraints
-  model       = var.model
   resources   = var.amf.resources
   revision    = var.amf.revision
   base        = var.amf.base
   units       = var.amf.units
-
-  depends_on = [
-    nrf,
-    nms
-  ]
 }
 
 module "ausf" {
   source    = "git::https://github.com/canonical/sdcore-ausf-k8s-operator//terraform"
-  model     = var.model
-  channel   = var.sdcore_channel
-  revision  = var.ausf_revision
-  resources = var.ausf_resources
+  model       = var.model
+  app_name    = var.amf.app_name
+  channel     = var.amf.channel
+  config      = var.amf.config
+  constraints = var.amf.constraints
+  resources   = var.amf.resources
+  revision    = var.amf.revision
+  base        = var.amf.base
+  units       = var.amf.units
 }
 
 module "nms" {
   source    = "git::https://github.com/canonical/sdcore-nms-k8s-operator//terraform"
-  model     = var.model
-  channel   = var.sdcore_channel
-  revision  = var.nms_revision
-  resources = var.nms_resources
+  model       = var.model
+  app_name    = var.amf.app_name
+  channel     = var.amf.channel
+  config      = var.amf.config
+  constraints = var.amf.constraints
+  resources   = var.amf.resources
+  revision    = var.amf.revision
+  base        = var.amf.base
+  units       = var.amf.units
 }
 
 module "nrf" {
   source    = "git::https://github.com/canonical/sdcore-nrf-k8s-operator//terraform"
-  model     = var.model
-  channel   = var.sdcore_channel
-  revision  = var.nrf_revision
-  resources = var.nrf_resources
+  model       = var.model
+  app_name    = var.amf.app_name
+  channel     = var.amf.channel
+  config      = var.amf.config
+  constraints = var.amf.constraints
+  resources   = var.amf.resources
+  revision    = var.amf.revision
+  base        = var.amf.base
+  units       = var.amf.units
 }
 
 module "nssf" {
   source    = "git::https://github.com/canonical/sdcore-nssf-k8s-operator//terraform"
-  model     = var.model
-  channel   = var.sdcore_channel
-  revision  = var.nssf_revision
-  resources = var.nssf_resources
+  model       = var.model
+  app_name    = var.amf.app_name
+  channel     = var.amf.channel
+  config      = var.amf.config
+  constraints = var.amf.constraints
+  resources   = var.amf.resources
+  revision    = var.amf.revision
+  base        = var.amf.base
+  units       = var.amf.units
 }
 
 module "pcf" {
   source    = "git::https://github.com/canonical/sdcore-pcf-k8s-operator//terraform"
-  model     = var.model
-  channel   = var.sdcore_channel
-  revision  = var.pcf_revision
-  resources = var.pcf_resources
+  model       = var.model
+  app_name    = var.amf.app_name
+  channel     = var.amf.channel
+  config      = var.amf.config
+  constraints = var.amf.constraints
+  resources   = var.amf.resources
+  revision    = var.amf.revision
+  base        = var.amf.base
+  units       = var.amf.units
 }
 
 module "smf" {
   source    = "git::https://github.com/canonical/sdcore-smf-k8s-operator//terraform"
   model     = var.model
-  channel   = var.sdcore_channel
-  revision  = var.smf_revision
-  resources = var.smf_resources
+  app_name    = var.amf.app_name
+  channel     = var.amf.channel
+  config      = var.amf.config
+  constraints = var.amf.constraints
+  resources   = var.amf.resources
+  revision    = var.amf.revision
+  base        = var.amf.base
+  units       = var.amf.units
 }
 
 module "udm" {
   source    = "git::https://github.com/canonical/sdcore-udm-k8s-operator//terraform"
   model     = var.model
-  channel   = var.sdcore_channel
-  revision  = var.udm_revision
-  resources = var.udm_resources
+  app_name    = var.amf.app_name
+  channel     = var.amf.channel
+  config      = var.amf.config
+  constraints = var.amf.constraints
+  resources   = var.amf.resources
+  revision    = var.amf.revision
+  base        = var.amf.base
+  units       = var.amf.units
 }
 
 module "udr" {
   source    = "git::https://github.com/canonical/sdcore-udr-k8s-operator//terraform"
   model     = var.model
-  channel   = var.sdcore_channel
-  revision  = var.udr_revision
-  resources = var.udr_resources
+  app_name    = var.amf.app_name
+  channel     = var.amf.channel
+  config      = var.amf.config
+  constraints = var.amf.constraints
+  resources   = var.amf.resources
+  revision    = var.amf.revision
+  base        = var.amf.base
+  units       = var.amf.units
 }
 
 module "mongodb" {

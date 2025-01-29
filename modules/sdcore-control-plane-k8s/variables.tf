@@ -49,118 +49,108 @@ variable "amf" {
   })
 }
 
-#variable "amf_config" {
-#  description = "Application config for the AMF. Details about available options can be found at https://charmhub.io/sdcore-amf-k8s-operator/configure."
-#  type        = map(string)
-#  default     = {}
-#}
-#
-#variable "amf_resources" {
-#  description = "Resources to use with the application. Details about available options can be found at https://charmhub.io/sdcore-amf-k8s-operator/configure."
-#  type        = map(string)
-#  default     = {}
-#}
-#
-#variable "amf_revision" {
-#  description = "Revision number of the AMF charm"
-#  type        = number
-#  default     = null
-#}
-
-variable "ausf_resources" {
-  description = "Resources to use with the application. Details about available options can be found at https://charmhub.io/sdcore-ausf-k8s-operator/configure."
-  type        = map(string)
-  default     = {}
+variable "ausf" {
+  type = object({
+    app_name    = optional(string, "ausf")
+    channel     = optional(string, "1.6/edge")
+    config      = optional(map(string), {})
+    constraints = optional(string, "arch=amd64")
+    resources   = optional(map(string), {})
+    revision    = optional(number)
+    base        = optional(string, "ubuntu@24.04")
+    units       = optional(number, 1)
+  })
 }
 
-variable "ausf_revision" {
-  description = "Revision number of the AUSF charm"
-  type        = number
-  default     = null
+variable "nms" {
+  type = object({
+    app_name    = optional(string, "nms")
+    channel     = optional(string, "1.6/edge")
+    config      = optional(map(string), {})
+    constraints = optional(string, "arch=amd64")
+    resources   = optional(map(string), {})
+    revision    = optional(number)
+    base        = optional(string, "ubuntu@24.04")
+    units       = optional(number, 1)
+  })
 }
 
-variable "nms_resources" {
-  description = "Resources to use with the application. Details about available options can be found at https://charmhub.io/sdcore-nms-k8s-operator/configure."
-  type        = map(string)
-  default     = {}
+variable "nrf" {
+  type = object({
+    app_name    = optional(string, "nrf")
+    channel     = optional(string, "1.6/edge")
+    config      = optional(map(string), {})
+    constraints = optional(string, "arch=amd64")
+    resources   = optional(map(string), {})
+    revision    = optional(number)
+    base        = optional(string, "ubuntu@24.04")
+    units       = optional(number, 1)
+  })
 }
 
-variable "nms_revision" {
-  description = "Revision number of the NMS charm"
-  type        = number
-  default     = null
+variable "nssf" {
+  type = object({
+    app_name    = optional(string, "nssf")
+    channel     = optional(string, "1.6/edge")
+    config      = optional(map(string), {})
+    constraints = optional(string, "arch=amd64")
+    resources   = optional(map(string), {})
+    revision    = optional(number)
+    base        = optional(string, "ubuntu@24.04")
+    units       = optional(number, 1)
+  })
 }
 
-variable "nrf_resources" {
-  description = "Resources to use with the application. Details about available options can be found at https://charmhub.io/sdcore-nrf-k8s-operator/configure."
-  type        = map(string)
-  default     = {}
+variable "pcf" {
+  type = object({
+    app_name    = optional(string, "pcf")
+    channel     = optional(string, "1.6/edge")
+    config      = optional(map(string), {})
+    constraints = optional(string, "arch=amd64")
+    resources   = optional(map(string), {})
+    revision    = optional(number)
+    base        = optional(string, "ubuntu@24.04")
+    units       = optional(number, 1)
+  })
 }
 
-variable "nrf_revision" {
-  description = "Revision number of the NRF charm"
-  type        = number
-  default     = null
+variable "smf" {
+  type = object({
+    app_name    = optional(string, "smf")
+    channel     = optional(string, "1.6/edge")
+    config      = optional(map(string), {})
+    constraints = optional(string, "arch=amd64")
+    resources   = optional(map(string), {})
+    revision    = optional(number)
+    base        = optional(string, "ubuntu@24.04")
+    units       = optional(number, 1)
+  })
 }
 
-variable "nssf_resources" {
-  description = "Resources to use with the application. Details about available options can be found at https://charmhub.io/sdcore-nssf-k8s-operator/configure."
-  type        = map(string)
-  default     = {}
+variable "udm" {
+  type = object({
+    app_name    = optional(string, "udm")
+    channel     = optional(string, "1.6/edge")
+    config      = optional(map(string), {})
+    constraints = optional(string, "arch=amd64")
+    resources   = optional(map(string), {})
+    revision    = optional(number)
+    base        = optional(string, "ubuntu@24.04")
+    units       = optional(number, 1)
+  })
 }
 
-variable "nssf_revision" {
-  description = "Revision number of the NSSF charm"
-  type        = number
-  default     = null
-}
-
-variable "pcf_resources" {
-  description = "Resources to use with the application. Details about available options can be found at https://charmhub.io/sdcore-pcf-k8s-operator/configure."
-  type        = map(string)
-  default     = {}
-}
-
-variable "pcf_revision" {
-  description = "Revision number of the PCF charm"
-  type        = number
-  default     = null
-}
-
-variable "smf_resources" {
-  description = "Resources to use with the application. Details about available options can be found at https://charmhub.io/sdcore-smf-k8s-operator/configure."
-  type        = map(string)
-  default     = {}
-}
-
-variable "smf_revision" {
-  description = "Revision number of the SMF charm"
-  type        = number
-  default     = null
-}
-
-variable "udm_resources" {
-  description = "Resources to use with the application. Details about available options can be found at https://charmhub.io/sdcore-udm-k8s-operator/configure."
-  type        = map(string)
-  default     = {}
-}
-
-variable "udm_revision" {
-  description = "Revision number of the UDM charm"
-  type        = number
-  default     = null
-}
-
-variable "udr_resources" {
-  description = "Resources to use with the application. Details about available options can be found at https://charmhub.io/sdcore-udr-k8s-operator/configure."
-  type        = map(string)
-  default     = {}
-}
-
-variable "udr_revision" {
-  description = "Revision number of the UDR charm"
-  type        = number
-  default     = null
+variable "udr" {
+  type = object({
+    app_name    = optional(string, "udr")
+    channel     = optional(string, "1.6/edge")
+    config      = optional(map(string), {})
+    constraints = optional(string, "arch=amd64")
+    resources   = optional(map(string), {})
+    revision    = optional(number)
+    base        = optional(string, "ubuntu@24.04")
+    units       = optional(number, 1)
+  })
 }
 
 variable "mongo_config" {
