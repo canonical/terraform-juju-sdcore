@@ -38,25 +38,15 @@ variable "traefik_channel" {
 
 variable "amf" {
   type = object({
-    app_name    = string
-    channel     = string
-    config      = map(string)
-    constraints = string
-    resources   = map(string)
-    revision    = number
-    base        = string
-    units       = number
+    app_name    = optional(string, "amf")
+    channel     = optional(string, "1.6/edge")
+    config      = optional(map(string), {})
+    constraints = optional(string, "arch=amd64")
+    resources   = optional(map(string), {})
+    revision    = optional(number)
+    base        = optional(string, "ubuntu@24.04")
+    units       = optional(number, 1)
   })
-  default = {
-    app_name    = "amf"
-    channel     = "1.6/edge"
-    config      = {}
-    constraints = "arch=amd64"
-    resources   = {}
-    revision    = null
-    base        = "ubuntu@24.04"
-    units       = 1
-  }
 }
 
 #variable "amf_config" {
