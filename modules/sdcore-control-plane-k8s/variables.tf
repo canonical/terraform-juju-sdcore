@@ -36,23 +36,48 @@ variable "traefik_channel" {
   default     = "latest/stable"
 }
 
-variable "amf_config" {
-  description = "Application config for the AMF. Details about available options can be found at https://charmhub.io/sdcore-amf-k8s-operator/configure."
-  type        = map(string)
-  default     = {}
+variable "amf" {
+  type = object({
+    module_ref  = string
+    app_name    = string
+    channel     = string
+    config      = map(string)
+    constraints = string
+    resources   = map(string)
+    revision    = number
+    base        = string
+    units       = number
+  })
+  default = {
+    module_ref  = "main"
+    app_name    = "amf"
+    channel     = var.sdcore_channel
+    config      = {}
+    constraints = "arch=amd64"
+    resources   = {}
+    revision    = null
+    base        = "ubuntu@24.04"
+    units       = 1
+  }
 }
 
-variable "amf_resources" {
-  description = "Resources to use with the application. Details about available options can be found at https://charmhub.io/sdcore-amf-k8s-operator/configure."
-  type        = map(string)
-  default     = {}
-}
-
-variable "amf_revision" {
-  description = "Revision number of the AMF charm"
-  type        = number
-  default     = null
-}
+#variable "amf_config" {
+#  description = "Application config for the AMF. Details about available options can be found at https://charmhub.io/sdcore-amf-k8s-operator/configure."
+#  type        = map(string)
+#  default     = {}
+#}
+#
+#variable "amf_resources" {
+#  description = "Resources to use with the application. Details about available options can be found at https://charmhub.io/sdcore-amf-k8s-operator/configure."
+#  type        = map(string)
+#  default     = {}
+#}
+#
+#variable "amf_revision" {
+#  description = "Revision number of the AMF charm"
+#  type        = number
+#  default     = null
+#}
 
 variable "ausf_resources" {
   description = "Resources to use with the application. Details about available options can be found at https://charmhub.io/sdcore-ausf-k8s-operator/configure."

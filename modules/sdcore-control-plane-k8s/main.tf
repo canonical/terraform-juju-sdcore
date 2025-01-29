@@ -6,12 +6,16 @@ data "juju_model" "sdcore" {
 }
 
 module "amf" {
-  source    = "git::https://github.com/canonical/sdcore-amf-k8s-operator//terraform"
-  model     = data.juju_model.sdcore.name
-  channel   = var.sdcore_channel
-  config    = var.amf_config
-  revision  = var.amf_revision
-  resources = var.amf_resources
+  source      = "git::https://github.com/canonical/sdcore-amf-k8s-operator//terraform?ref=${var.amf.module_ref}"
+  app_name    = var.amf.app_name
+  channel     = var.amf.channel
+  config      = var.amf.config
+  constraints = var.amf.constraints
+  model       = data.juju_model.sdcore.name
+  resources   = var.amf.resources
+  revision    = var.amf.revision
+  base        = var.amf.base
+  units       = var.amf.units
 }
 
 module "ausf" {
