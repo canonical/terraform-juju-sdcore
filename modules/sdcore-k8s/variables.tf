@@ -54,6 +54,12 @@ variable "nms_revision" {
   default     = null
 }
 
+variable "nrf_config" {
+  description = "Application config for the NRF. Details about available options can be found at https://charmhub.io/sdcore-nrf-k8s-operator/configure."
+  type        = map(string)
+  default     = {}
+}
+
 variable "nrf_resources" {
   description = "Resources to use with the application. Details about available options can be found at https://charmhub.io/sdcore-nrf-k8s-operator/configure."
   type        = map(string)
