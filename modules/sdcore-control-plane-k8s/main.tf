@@ -34,6 +34,7 @@ module "nrf" {
   source    = "git::https://github.com/canonical/sdcore-nrf-k8s-operator//terraform"
   model     = data.juju_model.sdcore.name
   channel   = var.sdcore_channel
+  config    = var.nrf_config
   revision  = var.nrf_revision
   resources = var.nrf_resources
 }
