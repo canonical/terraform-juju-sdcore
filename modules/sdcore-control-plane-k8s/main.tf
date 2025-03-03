@@ -18,6 +18,7 @@ module "ausf" {
   source    = "git::https://github.com/canonical/sdcore-ausf-k8s-operator//terraform"
   model     = data.juju_model.sdcore.name
   channel   = var.sdcore_channel
+  config    = var.ausf_config
   revision  = var.ausf_revision
   resources = var.ausf_resources
 }
@@ -26,6 +27,7 @@ module "nms" {
   source    = "git::https://github.com/canonical/sdcore-nms-k8s-operator//terraform"
   model     = data.juju_model.sdcore.name
   channel   = var.sdcore_channel
+  config    = var.nms_config
   revision  = var.nms_revision
   resources = var.nms_resources
 }
@@ -43,6 +45,7 @@ module "nssf" {
   source    = "git::https://github.com/canonical/sdcore-nssf-k8s-operator//terraform"
   model     = data.juju_model.sdcore.name
   channel   = var.sdcore_channel
+  config    = var.nssf_config
   revision  = var.nssf_revision
   resources = var.nssf_resources
 }
@@ -51,6 +54,7 @@ module "pcf" {
   source    = "git::https://github.com/canonical/sdcore-pcf-k8s-operator//terraform"
   model     = data.juju_model.sdcore.name
   channel   = var.sdcore_channel
+  config    = var.pcf_config
   revision  = var.pcf_revision
   resources = var.pcf_resources
 }
@@ -59,6 +63,7 @@ module "smf" {
   source    = "git::https://github.com/canonical/sdcore-smf-k8s-operator//terraform"
   model     = data.juju_model.sdcore.name
   channel   = var.sdcore_channel
+  config    = var.smf_config
   revision  = var.smf_revision
   resources = var.smf_resources
 }
@@ -67,6 +72,7 @@ module "udm" {
   source    = "git::https://github.com/canonical/sdcore-udm-k8s-operator//terraform"
   model     = data.juju_model.sdcore.name
   channel   = var.sdcore_channel
+  config    = var.udm_config
   revision  = var.udm_revision
   resources = var.udm_resources
 }
@@ -75,6 +81,7 @@ module "udr" {
   source    = "git::https://github.com/canonical/sdcore-udr-k8s-operator//terraform"
   model     = data.juju_model.sdcore.name
   channel   = var.sdcore_channel
+  config    = var.udr_config
   revision  = var.udr_revision
   resources = var.udr_resources
 }
