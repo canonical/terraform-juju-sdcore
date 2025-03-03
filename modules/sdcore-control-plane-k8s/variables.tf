@@ -54,6 +54,12 @@ variable "amf_revision" {
   default     = null
 }
 
+variable "ausf_config" {
+  description = "Application config for the AUSF. Details about available options can be found at https://charmhub.io/sdcore-ausf-k8s-operator/configure."
+  type        = map(string)
+  default     = {}
+}
+
 variable "ausf_resources" {
   description = "Resources to use with the application. Details about available options can be found at https://charmhub.io/sdcore-ausf-k8s-operator/configure."
   type        = map(string)
@@ -64,6 +70,12 @@ variable "ausf_revision" {
   description = "Revision number of the AUSF charm"
   type        = number
   default     = null
+}
+
+variable "nms_config" {
+  description = "Application config for the NMS. Details about available options can be found at https://charmhub.io/sdcore-nms-k8s-operator/configure."
+  type        = map(string)
+  default     = {}
 }
 
 variable "nms_resources" {
@@ -96,6 +108,12 @@ variable "nrf_revision" {
   default     = null
 }
 
+variable "nssf_config" {
+  description = "Application config for the NSSF. Details about available options can be found at https://charmhub.io/sdcore-nssf-k8s-operator/configure."
+  type        = map(string)
+  default     = {}
+}
+
 variable "nssf_resources" {
   description = "Resources to use with the application. Details about available options can be found at https://charmhub.io/sdcore-nssf-k8s-operator/configure."
   type        = map(string)
@@ -106,6 +124,12 @@ variable "nssf_revision" {
   description = "Revision number of the NSSF charm"
   type        = number
   default     = null
+}
+
+variable "pcf_config" {
+  description = "Application config for the PCF. Details about available options can be found at https://charmhub.io/sdcore-pcf-k8s-operator/configure."
+  type        = map(string)
+  default     = {}
 }
 
 variable "pcf_resources" {
@@ -120,6 +144,12 @@ variable "pcf_revision" {
   default     = null
 }
 
+variable "smf_config" {
+  description = "Application config for the SMF. Details about available options can be found at https://charmhub.io/sdcore-smf-k8s-operator/configure."
+  type        = map(string)
+  default     = {}
+}
+
 variable "smf_resources" {
   description = "Resources to use with the application. Details about available options can be found at https://charmhub.io/sdcore-smf-k8s-operator/configure."
   type        = map(string)
@@ -132,6 +162,12 @@ variable "smf_revision" {
   default     = null
 }
 
+variable "udm_config" {
+  description = "Application config for the UDM. Details about available options can be found at https://charmhub.io/sdcore-udm-k8s-operator/configure."
+  type        = map(string)
+  default     = {}
+}
+
 variable "udm_resources" {
   description = "Resources to use with the application. Details about available options can be found at https://charmhub.io/sdcore-udm-k8s-operator/configure."
   type        = map(string)
@@ -142,6 +178,12 @@ variable "udm_revision" {
   description = "Revision number of the UDM charm"
   type        = number
   default     = null
+}
+
+variable "udr_config" {
+  description = "Application config for the UDR. Details about available options can be found at https://charmhub.io/sdcore-udr-k8s-operator/configure."
+  type        = map(string)
+  default     = {}
 }
 
 variable "udr_resources" {
