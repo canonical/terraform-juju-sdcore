@@ -555,7 +555,7 @@ resource "juju_integration" "amf-certificates" {
 
   application {
     name     = module.self-signed-certificates.app_name
-    endpoint = module.self-signed-certificates.certificates_endpoint
+    endpoint = module.self-signed-certificates.provides.certificates
   }
 }
 
@@ -569,7 +569,7 @@ resource "juju_integration" "udm-certificates" {
 
   application {
     name     = module.self-signed-certificates.app_name
-    endpoint = module.self-signed-certificates.certificates_endpoint
+    endpoint = module.self-signed-certificates.provides.certificates
   }
 }
 
@@ -583,7 +583,7 @@ resource "juju_integration" "smf-certificates" {
 
   application {
     name     = module.self-signed-certificates.app_name
-    endpoint = module.self-signed-certificates.certificates_endpoint
+    endpoint = module.self-signed-certificates.provides.certificates
   }
 }
 
@@ -597,7 +597,7 @@ resource "juju_integration" "pcf-certificates" {
 
   application {
     name     = module.self-signed-certificates.app_name
-    endpoint = module.self-signed-certificates.certificates_endpoint
+    endpoint = module.self-signed-certificates.provides.certificates
   }
 }
 
@@ -611,7 +611,7 @@ resource "juju_integration" "nssf-certificates" {
 
   application {
     name     = module.self-signed-certificates.app_name
-    endpoint = module.self-signed-certificates.certificates_endpoint
+    endpoint = module.self-signed-certificates.provides.certificates
   }
 }
 
@@ -625,7 +625,7 @@ resource "juju_integration" "nrf-certificates" {
 
   application {
     name     = module.self-signed-certificates.app_name
-    endpoint = module.self-signed-certificates.certificates_endpoint
+    endpoint = module.self-signed-certificates.provides.certificates
   }
 }
 
@@ -639,7 +639,7 @@ resource "juju_integration" "ausf-certificates" {
 
   application {
     name     = module.self-signed-certificates.app_name
-    endpoint = module.self-signed-certificates.certificates_endpoint
+    endpoint = module.self-signed-certificates.provides.certificates
   }
 }
 
@@ -653,7 +653,7 @@ resource "juju_integration" "udr-certificates" {
 
   application {
     name     = module.self-signed-certificates.app_name
-    endpoint = module.self-signed-certificates.certificates_endpoint
+    endpoint = module.self-signed-certificates.provides.certificates
   }
 }
 
@@ -667,7 +667,7 @@ resource "juju_integration" "nms-certificates" {
 
   application {
     name     = module.self-signed-certificates.app_name
-    endpoint = module.self-signed-certificates.certificates_endpoint
+    endpoint = module.self-signed-certificates.provides.certificates
   }
 }
 
@@ -681,7 +681,7 @@ resource "juju_integration" "traefik-certificates" {
 
   application {
     name     = module.self-signed-certificates.app_name
-    endpoint = module.self-signed-certificates.certificates_endpoint
+    endpoint = module.self-signed-certificates.provides.certificates
   }
 }
 
