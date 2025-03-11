@@ -108,7 +108,7 @@ nms                                active       1  sdcore-nms-k8s            1.6
 nrf                                active       1  sdcore-nrf-k8s            1.6/edge        30  10.152.183.78   no       
 nssf                               active       1  sdcore-nssf-k8s           1.6/edge        24  10.152.183.215  no       
 pcf                                active       1  sdcore-pcf-k8s            1.6/edge        26  10.152.183.225  no       
-self-signed-certificates           active       1  self-signed-certificates  latest/stable   72  10.152.183.146  no       
+self-signed-certificates           active       1  self-signed-certificates  1/stable        72  10.152.183.146  no       
 smf                                active       1  sdcore-smf-k8s            1.6/edge        25  10.152.183.29   no       
 traefik                   2.10.4   active       1  traefik-k8s               latest/stable  166  10.0.0.10       no       
 udm                                active       1  sdcore-udm-k8s            1.6/edge        23  10.152.183.251  no       
