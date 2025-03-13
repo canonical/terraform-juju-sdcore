@@ -13,11 +13,6 @@ output "nms_fiveg_core_gnb_offer_url" {
   value       = juju_offer.nms-fiveg-core-gnb.url
 }
 
-output "upf_fiveg_n3_offer_url" {
-  description = "UPF `fiveg_n3` offer."
-  value       = juju_offer.upf-fiveg-n3.url
-}
-
 # Outputs required to consume external offers
 
 output "grafana_agent_app_name" {

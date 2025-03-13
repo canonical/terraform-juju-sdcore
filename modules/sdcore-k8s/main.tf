@@ -116,9 +116,8 @@ module "traefik" {
 }
 
 module "upf" {
-  source    = "git::https://github.com/canonical/sdcore-upf-k8s-operator//terraform"
+  source    = "git::https://github.com/gruyaume/eupf-k8s-operator//terraform"
   model     = data.juju_model.sdcore.name
-  channel   = var.sdcore_channel
   config    = var.upf_config
   revision  = var.upf_revision
   resources = var.upf_resources
@@ -908,10 +907,4 @@ resource "juju_offer" "nms-fiveg-core-gnb" {
   model            = data.juju_model.sdcore.name
   application_name = module.nms.app_name
   endpoint         = module.nms.provides.fiveg_core_gnb
-}
-
-resource "juju_offer" "upf-fiveg-n3" {
-  model            = data.juju_model.sdcore.name
-  application_name = module.upf.app_name
-  endpoint         = module.upf.provides.fiveg_n3
 }
