@@ -96,7 +96,7 @@ module "self-signed-certificates" {
   source  = "git::https://github.com/canonical/self-signed-certificates-operator//terraform"
   model   = data.juju_model.sdcore.name
   channel = var.self_signed_certificates_channel
-  base    = "ubuntu@22.04"
+  base    = "ubuntu@24.04"
   config  = var.self_signed_certificates_config
 }
 
