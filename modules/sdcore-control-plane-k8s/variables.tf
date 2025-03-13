@@ -27,7 +27,7 @@ variable "grafana_agent_channel" {
 variable "self_signed_certificates_channel" {
   description = "The channel to use when deploying `self-signed-certificates-operator` charm."
   type        = string
-  default     = "latest/stable"
+  default     = "1/stable"
 }
 
 variable "traefik_channel" {
