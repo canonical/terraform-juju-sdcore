@@ -175,13 +175,13 @@ variable "udr_revision" {
 }
 
 variable "upf_config" {
-  description = "Application config for the AMF. Details about available options can be found at https://charmhub.io/sdcore-upf-k8s-operator/configure."
+  description = "Application config for the AMF. Details about available options can be found at https://charmhub.io/eupf-k8s/configure."
   type        = map(string)
   default     = {}
 }
 
 variable "upf_resources" {
-  description = "Resources to use with the application. Details about available options can be found at https://charmhub.io/sdcore-upf-k8s-operator/configure."
+  description = "Resources to use with the application. Details about available options can be found at https://charmhub.io/eupf-k8s/configure."
   type        = map(string)
   default     = {}
 }
