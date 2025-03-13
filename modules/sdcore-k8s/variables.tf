@@ -181,7 +181,7 @@ variable "mongo_config" {
 variable "self_signed_certificates_channel" {
   description = "The channel to use when deploying `self-signed-certificates-operator` charm."
   type        = string
-  default     = "latest/stable"
+  default     = "1/stable"
 }
 variable "self_signed_certificates_config" {
   description = "Additional configuration for the Self-Signed-Certificates. Details about available options can be found at https://charmhub.io/self-signed-certificates-operator/configure."

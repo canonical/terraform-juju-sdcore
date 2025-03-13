@@ -93,10 +93,11 @@ module "grafana-agent" {
 }
 
 module "self-signed-certificates" {
-  source     = "git::https://github.com/canonical/self-signed-certificates-operator//terraform"
-  model_name = data.juju_model.sdcore.name
-  channel    = var.self_signed_certificates_channel
-  config     = var.self_signed_certificates_config
+  source  = "git::https://github.com/canonical/self-signed-certificates-operator//terraform"
+  model   = data.juju_model.sdcore.name
+  channel = var.self_signed_certificates_channel
+  base    = "ubuntu@24.04"
+  config  = var.self_signed_certificates_config
 }
 
 module "traefik" {
@@ -569,7 +570,7 @@ resource "juju_integration" "amf-certificates" {
 
   application {
     name     = module.self-signed-certificates.app_name
-    endpoint = module.self-signed-certificates.certificates_endpoint
+    endpoint = module.self-signed-certificates.provides.certificates
   }
 }
 
@@ -583,7 +584,7 @@ resource "juju_integration" "udm-certificates" {
 
   application {
     name     = module.self-signed-certificates.app_name
-    endpoint = module.self-signed-certificates.certificates_endpoint
+    endpoint = module.self-signed-certificates.provides.certificates
   }
 }
 
@@ -597,7 +598,7 @@ resource "juju_integration" "smf-certificates" {
 
   application {
     name     = module.self-signed-certificates.app_name
-    endpoint = module.self-signed-certificates.certificates_endpoint
+    endpoint = module.self-signed-certificates.provides.certificates
   }
 }
 
@@ -611,7 +612,7 @@ resource "juju_integration" "pcf-certificates" {
 
   application {
     name     = module.self-signed-certificates.app_name
-    endpoint = module.self-signed-certificates.certificates_endpoint
+    endpoint = module.self-signed-certificates.provides.certificates
   }
 }
 
@@ -625,7 +626,7 @@ resource "juju_integration" "nssf-certificates" {
 
   application {
     name     = module.self-signed-certificates.app_name
-    endpoint = module.self-signed-certificates.certificates_endpoint
+    endpoint = module.self-signed-certificates.provides.certificates
   }
 }
 
@@ -639,7 +640,7 @@ resource "juju_integration" "nrf-certificates" {
 
   application {
     name     = module.self-signed-certificates.app_name
-    endpoint = module.self-signed-certificates.certificates_endpoint
+    endpoint = module.self-signed-certificates.provides.certificates
   }
 }
 
@@ -653,7 +654,7 @@ resource "juju_integration" "ausf-certificates" {
 
   application {
     name     = module.self-signed-certificates.app_name
-    endpoint = module.self-signed-certificates.certificates_endpoint
+    endpoint = module.self-signed-certificates.provides.certificates
   }
 }
 
@@ -667,7 +668,7 @@ resource "juju_integration" "udr-certificates" {
 
   application {
     name     = module.self-signed-certificates.app_name
-    endpoint = module.self-signed-certificates.certificates_endpoint
+    endpoint = module.self-signed-certificates.provides.certificates
   }
 }
 
@@ -681,7 +682,7 @@ resource "juju_integration" "nms-certificates" {
 
   application {
     name     = module.self-signed-certificates.app_name
-    endpoint = module.self-signed-certificates.certificates_endpoint
+    endpoint = module.self-signed-certificates.provides.certificates
   }
 }
 
@@ -695,7 +696,7 @@ resource "juju_integration" "traefik-certificates" {
 
   application {
     name     = module.self-signed-certificates.app_name
-    endpoint = module.self-signed-certificates.certificates_endpoint
+    endpoint = module.self-signed-certificates.provides.certificates
   }
 }
 
