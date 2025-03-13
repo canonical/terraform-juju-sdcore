@@ -908,9 +908,3 @@ resource "juju_offer" "nms-fiveg-core-gnb" {
   application_name = module.nms.app_name
   endpoint         = module.nms.provides.fiveg_core_gnb
 }
-
-resource "juju_offer" "upf-fiveg-n3" {
-  model            = data.juju_model.sdcore.name
-  application_name = module.upf.app_name
-  endpoint         = module.upf.provides.fiveg_n3
-}
