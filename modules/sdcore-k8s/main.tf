@@ -118,7 +118,6 @@ module "traefik" {
 module "upf" {
   source    = "git::https://github.com/gruyaume/eupf-k8s-operator//terraform"
   model     = data.juju_model.sdcore.name
-  channel   = var.sdcore_channel
   config    = var.upf_config
   revision  = var.upf_revision
   resources = var.upf_resources
