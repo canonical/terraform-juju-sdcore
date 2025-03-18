@@ -123,14 +123,6 @@ module "upf" {
   resources = var.upf_resources
 }
 
-module "iperf3" {
-  source    = "git::https://github.com/gruyaume/iperf3-k8s-operator//terraform"
-  model     = data.juju_model.sdcore.name
-  config    = var.iperf3_config
-  revision  = var.iperf3_revision
-  resources = var.iperf3_resources
-}
-
 # Integrations for `fiveg-nrf` endpoint
 
 resource "juju_integration" "amf-fiveg-nrf" {

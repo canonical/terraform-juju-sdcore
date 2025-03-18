@@ -192,24 +192,6 @@ variable "upf_revision" {
   default     = null
 }
 
-variable "iperf3_config" {
-  description = "Application config for the AMF. Details about available options can be found at https://charmhub.io/iperf3-k8s/configure."
-  type        = map(string)
-  default     = {}
-}
-
-variable "iperf3_resources" {
-  description = "Resources to use with the application. Details about available options can be found at https://charmhub.io/iperf3-k8s/configure."
-  type        = map(string)
-  default     = {}
-}
-
-variable "iperf3_revision" {
-  description = "Revision number of the iPerf3 charm"
-  type        = number
-  default     = null
-}
-
 # Grafana Agent K8s
 
 variable "grafana_agent_channel" {
