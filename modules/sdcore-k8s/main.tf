@@ -8,7 +8,7 @@ data "juju_model" "sdcore" {
 module "amf" {
   source    = "git::https://github.com/canonical/sdcore-amf-k8s-operator//terraform"
   model     = data.juju_model.sdcore.name
-  channel   = var.sdcore_channel
+  channel   = "1.6/edge/test-ha"
   config    = var.amf_config
   revision  = var.amf_revision
   resources = var.amf_resources
@@ -26,7 +26,7 @@ module "ausf" {
 module "nms" {
   source    = "git::https://github.com/canonical/sdcore-nms-k8s-operator//terraform"
   model     = data.juju_model.sdcore.name
-  channel   = "1.6/edge/test-scaling"
+  channel   = var.sdcore_channel
   config    = var.nms_config
   revision  = var.nms_revision
   resources = var.nms_resources
