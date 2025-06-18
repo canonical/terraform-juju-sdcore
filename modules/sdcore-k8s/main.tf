@@ -700,7 +700,7 @@ resource "juju_integration" "traefik-certificates" {
 
   application {
     name     = module.traefik.app_name
-    endpoint = module.traefik.certificates_endpoint
+    endpoint = module.traefik.endpoints.certificates
   }
 
   application {
@@ -721,7 +721,7 @@ resource "juju_integration" "nms-ingress" {
 
   application {
     name     = module.traefik.app_name
-    endpoint = module.traefik.ingress_endpoint
+    endpoint = module.traefik.endpoints.ingress
   }
 }
 
