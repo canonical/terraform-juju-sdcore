@@ -109,10 +109,11 @@ module "self-signed-certificates" {
 }
 
 module "traefik" {
-  source     = "../external/traefik-k8s"
-  model_name = data.juju_model.sdcore.name
+  source     = "git::https://github.com/canonical/traefik-k8s-operator//terraform"
+  model      = data.juju_model.sdcore.name
   channel    = var.traefik_channel
   config     = var.traefik_config
+  revision   = 234
 }
 
 module "upf" {
