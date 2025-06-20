@@ -197,7 +197,7 @@ variable "upf_revision" {
 variable "grafana_agent_channel" {
   description = "The channel to use when deploying `grafana-agent-k8s` charm."
   type        = string
-  default     = "latest/stable"
+  default     = "1/stable"
 }
 variable "grafana_agent_config" {
   description = "Additional configuration for the Grafana Agent. Details about available options can be found at https://charmhub.io/grafana-agent-k8s/configure."
