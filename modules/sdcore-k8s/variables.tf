@@ -230,6 +230,11 @@ variable "self_signed_certificates_config" {
   type        = map(string)
   default     = {}
 }
+variable "self_signed_certificates_revision" {
+  description = ""
+  type        = number
+  default     = null
+}
 
 # Traefik K8s
 
