@@ -6,21 +6,19 @@ resource "juju_model" "cos" {
 }
 
 module "alertmanager" {
-  source = "../alertmanager-k8s"
-
-  model_name = juju_model.cos.name
-  app_name   = var.alertmanager_app_name
-  channel    = var.alertmanager_channel
-  config     = var.alertmanager_config
+  source = "git::https://github.com/canonical/alertmanager-k8s-operator//terraform"
+  model    = juju_model.cos.name
+  app_name = var.alertmanager_app_name
+  channel  = var.alertmanager_channel
+  config   = var.alertmanager_config
 }
 
 module "catalogue" {
-  source = "../catalogue-k8s"
-
-  model_name = juju_model.cos.name
-  app_name   = var.catalogue_app_name
-  channel    = var.catalogue_channel
-  config     = var.catalogue_config
+  source   = "git::https://github.com/canonical/catalogue-k8s-operator//terraform"
+  model    = juju_model.cos.name
+  app_name = var.catalogue_app_name
+  channel  = var.catalogue_channel
+  config   = var.catalogue_config
 }
 
 module "cos-configuration" {
@@ -34,12 +32,11 @@ module "cos-configuration" {
 }
 
 module "grafana" {
-  source = "../grafana-k8s"
-
-  model_name = juju_model.cos.name
-  app_name   = var.grafana_app_name
-  channel    = var.grafana_channel
-  config     = var.grafana_config
+  source   = "git::https://github.com/canonical/grafana-k8s-operator//terraform"
+  model    = juju_model.cos.name
+  app_name = var.grafana_app_name
+  channel  = var.grafana_channel
+  config   = var.grafana_config
 }
 
 module "loki" {
@@ -61,12 +58,11 @@ module "prometheus" {
 }
 
 module "traefik" {
-  source = "../traefik-k8s"
-
-  model_name = juju_model.cos.name
-  app_name   = var.traefik_app_name
-  channel    = var.traefik_channel
-  config     = var.traefik_config
+  source   = "git::https://github.com/canonical/traefik-k8s-operator//terraform"
+  model    = juju_model.cos.name
+  app_name = var.traefik_app_name
+  channel  = var.traefik_channel
+  config   = var.traefik_config
 }
 
 # Provided by Alertmanager
@@ -76,7 +72,7 @@ resource "juju_integration" "alertmanager-metrics" {
 
   application {
     name     = module.alertmanager.app_name
-    endpoint = module.alertmanager.metrics_endpoint
+    endpoint = module.alertmanager.endpoints.self_metrics_endpoint
   }
 
   application {
@@ -89,7 +85,7 @@ resource "juju_integration" "loki-alerting" {
 
   application {
     name     = module.alertmanager.app_name
-    endpoint = module.alertmanager.alerting_endpoint
+    endpoint = module.alertmanager.endpoints.alerting
   }
 
   application {
@@ -102,7 +98,7 @@ resource "juju_integration" "prometheus-alerting" {
 
   application {
     name     = module.alertmanager.app_name
-    endpoint = module.alertmanager.alerting_endpoint
+    endpoint = module.alertmanager.endpoints.alerting
   }
 
   application {
@@ -120,7 +116,7 @@ resource "juju_integration" "alertmanager-grafana-dashboard" {
 
   application {
     name     = module.grafana.app_name
-    endpoint = module.grafana.grafana_dashboard_endpoint
+    endpoint = module.grafana.endpoints.grafana_dashboard
   }
 }
 resource "juju_integration" "alertmanager-grafana-source" {
@@ -128,12 +124,12 @@ resource "juju_integration" "alertmanager-grafana-source" {
 
   application {
     name     = module.alertmanager.app_name
-    endpoint = module.alertmanager.grafana_source_endpoint
+    endpoint = module.alertmanager.endpoints.grafana_source
   }
 
   application {
     name     = module.grafana.app_name
-    endpoint = module.grafana.grafana_source_endpoint
+    endpoint = module.grafana.endpoints.grafana_source
   }
 }
 
@@ -144,12 +140,12 @@ resource "juju_integration" "alertmanager-catalogue" {
 
   application {
     name     = module.alertmanager.app_name
-    endpoint = module.alertmanager.catalogue_endpoint
+    endpoint = module.alertmanager.endpoints.catalogue
   }
 
   application {
     name     = module.catalogue.app_name
-    endpoint = module.catalogue.catalogue_endpoint
+    endpoint = module.catalogue.endpoints.catalogue
   }
 }
 resource "juju_integration" "grafana-catalogue" {
@@ -157,12 +153,12 @@ resource "juju_integration" "grafana-catalogue" {
 
   application {
     name     = module.catalogue.app_name
-    endpoint = module.catalogue.catalogue_endpoint
+    endpoint = module.catalogue.endpoints.catalogue
   }
 
   application {
     name     = module.grafana.app_name
-    endpoint = module.grafana.catalogue_endpoint
+    endpoint = module.grafana.endpoints.catalogue
   }
 }
 resource "juju_integration" "prometheus-catalogue" {
@@ -170,7 +166,7 @@ resource "juju_integration" "prometheus-catalogue" {
 
   application {
     name     = module.catalogue.app_name
-    endpoint = module.catalogue.catalogue_endpoint
+    endpoint = module.catalogue.endpoints.catalogue
   }
 
   application {
@@ -191,7 +187,7 @@ resource "juju_integration" "cos-configuration-grafana" {
 
   application {
     name     = module.grafana.app_name
-    endpoint = module.grafana.grafana_dashboard_endpoint
+    endpoint = module.grafana.endpoints.grafana_dashboard
   }
 }
 resource "juju_integration" "cos-configuration-loki" {
@@ -230,7 +226,7 @@ resource "juju_integration" "grafana-metrics" {
 
   application {
     name     = module.grafana.app_name
-    endpoint = module.grafana.metrics_endpoint
+    endpoint = module.grafana.endpoints.metrics_endpoint
   }
 
   application {
@@ -264,7 +260,7 @@ resource "juju_integration" "loki-grafana-dashboard" {
 
   application {
     name     = module.grafana.app_name
-    endpoint = module.grafana.grafana_dashboard_endpoint
+    endpoint = module.grafana.endpoints.grafana_dashboard
   }
 }
 resource "juju_integration" "loki-grafana-source" {
@@ -277,7 +273,7 @@ resource "juju_integration" "loki-grafana-source" {
 
   application {
     name     = module.grafana.app_name
-    endpoint = module.grafana.grafana_source_endpoint
+    endpoint = module.grafana.endpoints.grafana_source
   }
 }
 
@@ -306,7 +302,7 @@ resource "juju_integration" "prometheus-grafana-source" {
 
   application {
     name     = module.grafana.app_name
-    endpoint = module.grafana.grafana_source_endpoint
+    endpoint = module.grafana.endpoints.grafana_source
   }
 }
 
@@ -317,12 +313,12 @@ resource "juju_integration" "alertmanager-ingress" {
 
   application {
     name     = module.alertmanager.app_name
-    endpoint = module.alertmanager.ingress_endpoint
+    endpoint = module.alertmanager.endpoints.ingress
   }
 
   application {
     name     = module.traefik.app_name
-    endpoint = module.traefik.ingress_endpoint
+    endpoint = module.traefik.endpoints.ingress
   }
 }
 resource "juju_integration" "catalogue-ingress" {
@@ -330,12 +326,12 @@ resource "juju_integration" "catalogue-ingress" {
 
   application {
     name     = module.traefik.app_name
-    endpoint = module.traefik.ingress_endpoint
+    endpoint = module.traefik.endpoints.ingress
   }
 
   application {
     name     = module.catalogue.app_name
-    endpoint = module.catalogue.ingress_endpoint
+    endpoint = module.catalogue.endpoints.ingress
   }
 }
 resource "juju_integration" "grafana-ingress" {
@@ -343,12 +339,12 @@ resource "juju_integration" "grafana-ingress" {
 
   application {
     name     = module.traefik.app_name
-    endpoint = module.traefik.traefik_route_endpoint
+    endpoint = module.traefik.endpoints.traefik_route
   }
 
   application {
     name     = module.grafana.app_name
-    endpoint = module.grafana.ingress_endpoint
+    endpoint = module.grafana.endpoints.ingress
   }
 }
 resource "juju_integration" "loki-ingress" {
@@ -356,7 +352,7 @@ resource "juju_integration" "loki-ingress" {
 
   application {
     name     = module.traefik.app_name
-    endpoint = module.traefik.ingress_per_unit_endpoint
+    endpoint = module.traefik.endpoints.ingress_per_unit
   }
 
   application {
@@ -369,7 +365,7 @@ resource "juju_integration" "prometheus-ingress" {
 
   application {
     name     = module.traefik.app_name
-    endpoint = module.traefik.ingress_per_unit_endpoint
+    endpoint = module.traefik.endpoints.ingress_per_unit
   }
 
   application {
@@ -382,7 +378,7 @@ resource "juju_integration" "traefik-metrics" {
 
   application {
     name     = module.traefik.app_name
-    endpoint = module.traefik.metrics_endpoint
+    endpoint = module.traefik.endpoints.metrics_endpoint
   }
 
   application {
