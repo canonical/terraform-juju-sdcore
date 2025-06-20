@@ -106,7 +106,7 @@ module "self-signed-certificates" {
   channel  = var.self_signed_certificates_channel
   base     = "ubuntu@24.04"
   config   = var.self_signed_certificates_config
-  revision = 308  # Workaround for https://github.com/canonical/charmed-aether-sd-core/issues/119
+  revision = 308 # Workaround for https://github.com/canonical/charmed-aether-sd-core/issues/119
 }
 
 module "traefik" {
