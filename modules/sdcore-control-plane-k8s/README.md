@@ -102,7 +102,7 @@ Model     Controller          Cloud/Region        Version  SLA          Timestam
 App                       Version  Status   Scale  Charm                     Channel        Rev  Address         Exposed  Message
 amf                                active       1  sdcore-amf-k8s            1.6/edge        29  10.152.183.161  no       
 ausf                               active       1  sdcore-ausf-k8s           1.6/edge        24  10.152.183.55   no       
-grafana-agent             0.32.1   waiting      1  grafana-agent-k8s         latest/stable   51  10.152.183.124  no       installing agent
+grafana-agent             0.32.1   waiting      1  grafana-agent-k8s         1/stable        51  10.152.183.124  no       installing agent
 mongodb                            active       1  mongodb-k8s               6/stable        61  10.152.183.204  no       Primary
 nms                                active       1  sdcore-nms-k8s            1.6/edge        23  10.152.183.238  no       
 nrf                                active       1  sdcore-nrf-k8s            1.6/edge        30  10.152.183.78   no       
