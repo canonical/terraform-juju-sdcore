@@ -123,7 +123,7 @@ variable "traefik_app_name" {
 variable "traefik_channel" {
   description = "The channel to use when deploying Traefik charm."
   type        = string
-  default     = "1/stable"
+  default     = "latest/stable"
 }
 variable "traefik_config" {
   description = "Traefik config. Details about available options can be found at https://charmhub.io/traefik-k8s/configure."
