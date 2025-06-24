@@ -101,7 +101,7 @@ Model  Controller          Cloud/Region        Version  SLA          Timestamp
 <model_name>   microk8s-localhost  microk8s/localhost  3.5.4    unsupported  17:04:33+03:00
 
 App            Version  Status   Scale  Charm              Channel        Rev  Address         Exposed  Message
-grafana-agent  0.32.1   waiting      1  grafana-agent-k8s  latest/stable   51  10.152.183.231  no       installing agent
+grafana-agent  0.32.1   waiting      1  grafana-agent-k8s  1/stable        51  10.152.183.231  no       installing agent
 upf                     active       1  sdcore-upf-k8s     1.6/edge        31  10.152.183.100  no       
 
 Unit              Workload  Agent  Address      Ports  Message
