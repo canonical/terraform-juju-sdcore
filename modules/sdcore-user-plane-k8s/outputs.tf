@@ -21,9 +21,9 @@ output "grafana_agent_app_name" {
 }
 output "send_remote_write_endpoint" {
   description = "Name of the endpoint to forward client charms metrics and associated alert rules to Prometheus using prometheus_remote_write interface."
-  value       = module.grafana-agent.send_remote_write_endpoint
+  value       = module.grafana-agent.endpoints.send_remote_write
 }
 output "logging_consumer_endpoint" {
   description = "Name of the endpoint to send the logs to Loki using loki_push_api interface."
-  value       = module.grafana-agent.logging_consumer_endpoint
+  value       = module.grafana-agent.endpoints.logging_consumer
 }
