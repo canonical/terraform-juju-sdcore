@@ -111,7 +111,7 @@ resource "juju_integration" "alertmanager-grafana-dashboard" {
 
   application {
     name     = module.alertmanager.app_name
-    endpoint = module.alertmanager.grafana_dashboard_endpoint
+    endpoint = module.alertmanager.endpoints.grafana_dashboard
   }
 
   application {
@@ -289,7 +289,7 @@ resource "juju_integration" "prometheus-grafana-dashboard" {
 
   application {
     name     = module.grafana.app_name
-    endpoint = module.grafana.grafana_dashboard_endpoint
+    endpoint = module.grafana.endpoints.grafana_dashboard
   }
 }
 resource "juju_integration" "prometheus-grafana-source" {
