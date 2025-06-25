@@ -94,10 +94,10 @@ module "mongodb" {
 }
 
 module "grafana-agent" {
-  source     = "../external/grafana-agent-k8s"
-  model_name = data.juju_model.sdcore.name
-  channel    = var.grafana_agent_channel
-  config     = var.grafana_agent_config
+  source  = "git::https://github.com/canonical/grafana-agent-k8s-operator//terraform"
+  model   = data.juju_model.sdcore.name
+  channel = var.grafana_agent_channel
+  config  = var.grafana_agent_config
 }
 
 module "self-signed-certificates" {
@@ -110,10 +110,10 @@ module "self-signed-certificates" {
 }
 
 module "traefik" {
-  source     = "../external/traefik-k8s"
-  model_name = data.juju_model.sdcore.name
-  channel    = var.traefik_channel
-  config     = var.traefik_config
+  source  = "git::https://github.com/canonical/traefik-k8s-operator//terraform"
+  model   = data.juju_model.sdcore.name
+  channel = var.traefik_channel
+  config  = var.traefik_config
 }
 
 # Integrations for `fiveg-nrf` endpoint
@@ -677,7 +677,7 @@ resource "juju_integration" "traefik-certificates" {
 
   application {
     name     = module.traefik.app_name
-    endpoint = module.traefik.certificates_endpoint
+    endpoint = module.traefik.endpoints.certificates
   }
 
   application {
@@ -698,7 +698,7 @@ resource "juju_integration" "nms-ingress" {
 
   application {
     name     = module.traefik.app_name
-    endpoint = module.traefik.ingress_endpoint
+    endpoint = module.traefik.endpoints.ingress
   }
 }
 
