@@ -396,11 +396,11 @@ resource "juju_integration" "traefik-metrics" {
 resource "juju_offer" "prometheus-remote-write" {
   model            = var.model_name
   application_name = module.prometheus.app_name
-  endpoint         = module.prometheus.receive_remote_write_endpoint
+  endpoints        = [module.prometheus.receive_remote_write_endpoint]
 }
 
 resource "juju_offer" "loki-logging" {
   model            = var.model_name
   application_name = module.loki.app_name
-  endpoint         = module.loki.logging_endpoint
+  endpoints        = [module.loki.logging_endpoint]
 }
