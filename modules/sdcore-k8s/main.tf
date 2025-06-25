@@ -119,7 +119,7 @@ module "traefik" {
 module "upf" {
   source    = "git::https://github.com/canonical/sdcore-upf-k8s-operator//terraform"
   model     = data.juju_model.sdcore.name
-  channel   = var.sdcore_channel
+  channel   = "1.6/edge/test-nad-route"
   config    = var.upf_config
   revision  = var.upf_revision
   resources = var.upf_resources
