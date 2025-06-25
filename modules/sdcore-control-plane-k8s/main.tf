@@ -849,11 +849,11 @@ resource "juju_integration" "nms-logging" {
 resource "juju_offer" "amf-fiveg-n2" {
   model            = data.juju_model.sdcore.name
   application_name = module.amf.app_name
-  endpoint         = module.amf.provides.fiveg_n2
+  endpoints        = [module.amf.provides.fiveg_n2]
 }
 
 resource "juju_offer" "nms-fiveg-core-gnb" {
   model            = data.juju_model.sdcore.name
   application_name = module.nms.app_name
-  endpoint         = module.nms.provides.fiveg_core_gnb
+  endpoints        = [module.nms.provides.fiveg_core_gnb]
 }
