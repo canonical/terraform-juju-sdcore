@@ -58,13 +58,13 @@ resource "juju_integration" "upf-logging" {
 resource "juju_offer" "upf-fiveg-n3" {
   model            = data.juju_model.sdcore_upf.name
   application_name = module.upf.app_name
-  endpoint         = module.upf.provides.fiveg_n3
+  endpoints        = [module.upf.provides.fiveg_n3]
   name             = "upf-fiveg-n3"
 }
 
 resource "juju_offer" "upf-fiveg-n4" {
   model            = data.juju_model.sdcore_upf.name
   application_name = module.upf.app_name
-  endpoint         = module.upf.provides.fiveg_n4
+  endpoints        = [module.upf.provides.fiveg_n4]
   name             = "upf-fiveg-n4"
 }
