@@ -437,7 +437,7 @@ resource "juju_integration" "amf-metrics" {
 
   application {
     name     = module.grafana-agent.app_name
-    endpoint = module.grafana-agent.metrics_endpoint
+    endpoint = module.grafana-agent.endpoints.metrics_endpoint
   }
 }
 
@@ -451,7 +451,7 @@ resource "juju_integration" "ausf-metrics" {
 
   application {
     name     = module.grafana-agent.app_name
-    endpoint = module.grafana-agent.metrics_endpoint
+    endpoint = module.grafana-agent.endpoints.metrics_endpoint
   }
 }
 
@@ -465,7 +465,7 @@ resource "juju_integration" "mongodb-metrics" {
 
   application {
     name     = module.grafana-agent.app_name
-    endpoint = module.grafana-agent.metrics_endpoint
+    endpoint = module.grafana-agent.endpoints.metrics_endpoint
   }
 }
 
@@ -479,7 +479,7 @@ resource "juju_integration" "nrf-metrics" {
 
   application {
     name     = module.grafana-agent.app_name
-    endpoint = module.grafana-agent.metrics_endpoint
+    endpoint = module.grafana-agent.endpoints.metrics_endpoint
   }
 }
 
@@ -493,7 +493,7 @@ resource "juju_integration" "nssf-metrics" {
 
   application {
     name     = module.grafana-agent.app_name
-    endpoint = module.grafana-agent.metrics_endpoint
+    endpoint = module.grafana-agent.endpoints.metrics_endpoint
   }
 }
 
@@ -507,7 +507,7 @@ resource "juju_integration" "pcf-metrics" {
 
   application {
     name     = module.grafana-agent.app_name
-    endpoint = module.grafana-agent.metrics_endpoint
+    endpoint = module.grafana-agent.endpoints.metrics_endpoint
   }
 }
 
@@ -521,7 +521,7 @@ resource "juju_integration" "smf-metrics" {
 
   application {
     name     = module.grafana-agent.app_name
-    endpoint = module.grafana-agent.metrics_endpoint
+    endpoint = module.grafana-agent.endpoints.metrics_endpoint
   }
 }
 
@@ -535,7 +535,7 @@ resource "juju_integration" "udm-metrics" {
 
   application {
     name     = module.grafana-agent.app_name
-    endpoint = module.grafana-agent.metrics_endpoint
+    endpoint = module.grafana-agent.endpoints.metrics_endpoint
   }
 }
 
@@ -549,7 +549,7 @@ resource "juju_integration" "udr-metrics" {
 
   application {
     name     = module.grafana-agent.app_name
-    endpoint = module.grafana-agent.metrics_endpoint
+    endpoint = module.grafana-agent.endpoints.metrics_endpoint
   }
 }
 
@@ -563,7 +563,7 @@ resource "juju_integration" "upf-metrics" {
 
   application {
     name     = module.grafana-agent.app_name
-    endpoint = module.grafana-agent.metrics_endpoint
+    endpoint = module.grafana-agent.endpoints.metrics_endpoint
   }
 }
 
@@ -737,7 +737,7 @@ resource "juju_integration" "mongodb-logging" {
 
   application {
     name     = module.grafana-agent.app_name
-    endpoint = module.grafana-agent.logging_provider_endpoint
+    endpoint = module.grafana-agent.endpoints.logging_provider
   }
 }
 
@@ -751,7 +751,7 @@ resource "juju_integration" "amf-logging" {
 
   application {
     name     = module.grafana-agent.app_name
-    endpoint = module.grafana-agent.logging_provider_endpoint
+    endpoint = module.grafana-agent.endpoints.logging_provider
   }
 }
 
@@ -765,7 +765,7 @@ resource "juju_integration" "ausf-logging" {
 
   application {
     name     = module.grafana-agent.app_name
-    endpoint = module.grafana-agent.logging_provider_endpoint
+    endpoint = module.grafana-agent.endpoints.logging_provider
   }
 }
 
@@ -779,7 +779,7 @@ resource "juju_integration" "nrf-logging" {
 
   application {
     name     = module.grafana-agent.app_name
-    endpoint = module.grafana-agent.logging_provider_endpoint
+    endpoint = module.grafana-agent.endpoints.logging_provider
   }
 }
 
@@ -793,7 +793,7 @@ resource "juju_integration" "nssf-logging" {
 
   application {
     name     = module.grafana-agent.app_name
-    endpoint = module.grafana-agent.logging_provider_endpoint
+    endpoint = module.grafana-agent.endpoints.logging_provider
   }
 }
 
@@ -807,7 +807,7 @@ resource "juju_integration" "pcf-logging" {
 
   application {
     name     = module.grafana-agent.app_name
-    endpoint = module.grafana-agent.logging_provider_endpoint
+    endpoint = module.grafana-agent.endpoints.logging_provider
   }
 }
 
@@ -821,7 +821,7 @@ resource "juju_integration" "smf-logging" {
 
   application {
     name     = module.grafana-agent.app_name
-    endpoint = module.grafana-agent.logging_provider_endpoint
+    endpoint = module.grafana-agent.endpoints.logging_provider
   }
 }
 
@@ -835,7 +835,7 @@ resource "juju_integration" "udm-logging" {
 
   application {
     name     = module.grafana-agent.app_name
-    endpoint = module.grafana-agent.logging_provider_endpoint
+    endpoint = module.grafana-agent.endpoints.logging_provider
   }
 }
 
@@ -849,7 +849,7 @@ resource "juju_integration" "udr-logging" {
 
   application {
     name     = module.grafana-agent.app_name
-    endpoint = module.grafana-agent.logging_provider_endpoint
+    endpoint = module.grafana-agent.endpoints.logging_provider
   }
 }
 
@@ -863,7 +863,7 @@ resource "juju_integration" "upf-logging" {
 
   application {
     name     = module.grafana-agent.app_name
-    endpoint = module.grafana-agent.logging_provider_endpoint
+    endpoint = module.grafana-agent.endpoints.logging_provider
   }
 }
 
@@ -877,7 +877,7 @@ resource "juju_integration" "nms-logging" {
 
   application {
     name     = module.grafana-agent.app_name
-    endpoint = module.grafana-agent.logging_provider_endpoint
+    endpoint = module.grafana-agent.endpoints.logging_provider
   }
 }
 

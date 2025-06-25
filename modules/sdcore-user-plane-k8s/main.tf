@@ -33,7 +33,7 @@ resource "juju_integration" "upf-metrics" {
 
   application {
     name     = module.grafana-agent.app_name
-    endpoint = module.grafana-agent.metrics_endpoint
+    endpoint = module.grafana-agent.endpoints.metrics_endpoint
   }
 }
 
@@ -49,7 +49,7 @@ resource "juju_integration" "upf-logging" {
 
   application {
     name     = module.grafana-agent.app_name
-    endpoint = module.grafana-agent.logging_provider_endpoint
+    endpoint = module.grafana-agent.endpoints.logging_provider
   }
 }
 
