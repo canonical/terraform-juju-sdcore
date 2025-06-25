@@ -15,10 +15,10 @@ module "upf" {
 }
 
 module "grafana-agent" {
-  source     = "git::https://github.com/canonical/grafana-agent-k8s-operator//terraform"
-  model      = data.juju_model.sdcore_upf.name
-  channel    = var.grafana_agent_channel
-  config     = var.grafana_agent_config
+  source  = "git::https://github.com/canonical/grafana-agent-k8s-operator//terraform"
+  model   = data.juju_model.sdcore_upf.name
+  channel = var.grafana_agent_channel
+  config  = var.grafana_agent_config
 }
 
 # Integrations for `metrics` endpoint

@@ -6,7 +6,7 @@ resource "juju_model" "cos" {
 }
 
 module "alertmanager" {
-  source = "git::https://github.com/canonical/alertmanager-k8s-operator//terraform"
+  source   = "git::https://github.com/canonical/alertmanager-k8s-operator//terraform"
   model    = juju_model.cos.name
   app_name = var.alertmanager_app_name
   channel  = var.alertmanager_channel
